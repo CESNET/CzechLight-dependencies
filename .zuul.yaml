@@ -1,0 +1,62 @@
+- job:
+    name: build_template
+    parent: run-ci-build-sh
+    roles:
+      - zuul: git-submodules
+    nodeset:
+      nodes:
+        - name: w
+          label: f29
+    timeout: 900
+    required-projects:
+      - github/CESNET/libyang
+#      - github/sysrepo/libredblack
+#      - github/sysrepo/sysrepo
+#      - github/CESNET/libnetconf2
+#      - github/CESNET/Netopeer2
+#      - github/philsquared/Catch
+#      - github/docopt/docopt.cpp
+#      - github/gabime/spdlog
+#      - github/rollbear/trompeloeil
+
+- job:
+    name: f29-gcc
+    parent: build_template
+    provides: CzechLight-deps-f29-gcc
+
+- job:
+    name: f29-gcc-asan
+    parent: build_template
+    provides: CzechLight-deps-f29-gcc-asan
+
+- job:
+    name: f29-gcc-asan-ubsan
+    parent: build_template
+    provides: CzechLight-deps-f29-gcc-asan-ubsan
+    voting: false
+
+- job:
+    name: f29-clang
+    parent: build_template
+    provides: CzechLight-deps-f29-clang
+
+- job:
+    name: f29-clang-asan
+    parent: build_template
+    provides: CzechLight-deps-f29-clang-asan
+
+- job:
+    name: f29-clang-asan-ubsan
+    parent: build_template
+    provides: CzechLight-deps-f29-clang-asan-ubsan
+    voting: false
+
+- project:
+    check:
+      jobs:
+        - f29-gcc
+#        - f29-gcc-asan
+#        - f29-gcc-asan-ubsan
+#        - f29-clang
+#        - f29-clang-asan
+#        - f29-clang-asan-ubsan
