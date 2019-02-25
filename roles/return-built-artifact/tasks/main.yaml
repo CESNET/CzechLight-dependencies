@@ -1,0 +1,14 @@
+- name: find artifact name
+  find:
+    paths: '{{ ansible_user_dir }}/zuul-output/artifacts'
+    patterns: 'dependencies-*.tar.xz'
+  register: artifacts
+
+- name: return artifacts to Zuul
+  when: artifacts.matched == 1
+  zuul_return:
+    data:
+      zuul:
+        artifacts:
+          - name: tarball
+            url: '{{ artifacts.files[0].path | basename }}'
