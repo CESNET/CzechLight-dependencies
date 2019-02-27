@@ -25,3 +25,6 @@
 [submodule "trompeloeil"]
 	path = trompeloeil
 	url = ../../github/rollbear/trompeloeil
+[submodule "replxx"]
+	path = replxx
+	url = ../../github/AmokHuginnsson/replxx

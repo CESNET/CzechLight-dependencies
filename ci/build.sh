@@ -124,6 +124,10 @@ do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
 emerge_dep spdlog
 do_test_dep_cmake spdlog -j${CI_PARALLEL_JOBS}
 
+# examples are broken on clang+ubsan because of their STL override
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BuildExamples=OFF" emerge_dep replxx
+do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
+
 # verify whether sysrepo still works
 sysrepoctl --list
 

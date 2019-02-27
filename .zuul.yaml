@@ -22,6 +22,7 @@
               - github/docopt/docopt.cpp
               - github/gabime/spdlog
               - github/rollbear/trompeloeil
+              - github/AmokHuginnsson/replxx
 
         - f29-gcc-asan:
             provides: CzechLight-deps-f29-gcc-asan
