@@ -18,6 +18,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CXX=clang++
     export LD=clang
     export CXXFLAGS="-stdlib=libc++"
+    export LDFLAGS="-stdlib=libc++"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-ubsan ]]; then
@@ -91,6 +92,18 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_BUILD_TESTS=ON -DENABLE_VALGRIND_TESTS=
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_PYTHON_BINDINGS=OFF"
 
 ARTIFACT=czechlight-dependencies-$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.xz
+
+mkdir ${BUILD_DIR}/boost
+pushd ${BUILD_DIR}/boost
+BOOST_VERSION=boost_1_69_0
+wget https://ci-logs.gerrit.cesnet.cz/t/public/mirror/buildroot/boost/${BOOST_VERSION}.tar.bz2
+tar -xf ${BOOST_VERSION}.tar.bz2
+cd ${BOOST_VERSION}
+./bootstrap.sh --prefix=${PREFIX} --with-toolset=${CC:-gcc}
+./b2 --ignore-site-config toolset=${CC:-gcc} ${CXXFLAGS:+cxxflags="${CXXFLAGS}"} ${LDFLAGS:+linkflags="${LDFLAGS}"} cxxstd=17 \
+  --with-system --with-thread --with-date_time --with-regex --with-serialization --with-chrono --with-atomic \
+  install
+popd
 
 emerge_dep libredblack --with-pic
 
