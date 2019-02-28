@@ -23,6 +23,7 @@
               - github/gabime/spdlog
               - github/rollbear/trompeloeil
               - github/AmokHuginnsson/replxx
+            timeout: 1800
 
         - f29-gcc-asan:
             provides: CzechLight-deps-f29-gcc-asan
@@ -30,6 +31,7 @@
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
+            timeout: 1800
 
         - f29-gcc-asan-ubsan:
             provides: CzechLight-deps-f29-gcc-asan-ubsan
@@ -37,6 +39,7 @@
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
+            timeout: 1800
 
         - f29-clang:
             provides: CzechLight-deps-f29-clang
@@ -44,6 +47,7 @@
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
+            timeout: 1800
 
         - f29-clang-asan:
             provides: CzechLight-deps-f29-clang-asan
@@ -51,6 +55,7 @@
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
+            timeout: 1800
 
         # clang w/ ASAN+UBSAN appears to be broken in Catch:
         # : && /usr/bin/clang++  -fsanitize=address -fsanitize=undefined -stdlib=libc++ -g  -fsanitize=address -fsanitize=undefined   -rdynamic CMakeFiles/Benchmark.dir/projects/Benchmark/BenchMain.cpp.o CMakeFiles/Benchmark.dir/projects/Benchmark/StringificationBench.cpp.o  -o Benchmark   && :

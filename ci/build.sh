@@ -18,6 +18,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CXX=clang++
     export LD=clang
     export CXXFLAGS="-stdlib=libc++"
+    export LDFLAGS="-stdlib=libc++"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-ubsan ]]; then
@@ -127,6 +128,19 @@ do_test_dep_cmake spdlog -j${CI_PARALLEL_JOBS}
 # examples are broken on clang+ubsan because of their STL override
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BuildExamples=OFF" emerge_dep replxx
 do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
+
+mkdir ${BUILD_DIR}/boost
+pushd ${BUILD_DIR}/boost
+BOOST_VERSION=boost_1_69_0
+wget https://ci-logs.gerrit.cesnet.cz/t/public/mirror/buildroot/boost/${BOOST_VERSION}.tar.bz2
+tar -xf ${BOOST_VERSION}.tar.bz2
+cd ${BOOST_VERSION}
+./bootstrap.sh --prefix=${PREFIX} --with-toolset=${CC:-gcc}
+./b2 --ignore-site-config toolset=${CC:-gcc} ${CXXFLAGS:+cxxflags="${CXXFLAGS}"} ${LDFLAGS:+linkflags="${LDFLAGS}"} cxxstd=17 \
+ -j ${CI_PARALLEL_JOBS} \
+  --with-system --with-thread --with-date_time --with-regex --with-serialization --with-chrono --with-atomic \
+  install
+popd
 
 # verify whether sysrepo still works
 sysrepoctl --list
