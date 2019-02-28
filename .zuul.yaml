@@ -25,24 +25,8 @@
               - github/AmokHuginnsson/replxx
             timeout: 1800
 
-        - f29-gcc-asan:
-            provides: CzechLight-deps-f29-gcc-asan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
         - f29-gcc-asan-ubsan:
             provides: CzechLight-deps-f29-gcc-asan-ubsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f29-clang:
-            provides: CzechLight-deps-f29-clang
             vars: *common_vars
             required-projects: *projects
             post-run: *common_post_run
