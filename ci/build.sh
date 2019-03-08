@@ -7,7 +7,7 @@ ZUUL_JOB_NAME=$(jq < ~/zuul-env.json -r '.job')
 ZUUL_PROJECT_SRC_DIR=$HOME/$(jq < ~/zuul-env.json -r '.project.src_dir')
 ZUUL_PROJECT_SHORT_NAME=$(jq < ~/zuul-env.json -r '.project.short_name')
 
-CI_PARALLEL_JOBS=$(grep -c '^processor' /proc/cpuinfo)
+CI_PARALLEL_JOBS=$(awk -vcpu=$(getconf _NPROCESSORS_ONLN) 'BEGIN{printf "%.0f", cpu*1.3+1}')
 CMAKE_OPTIONS=""
 CFLAGS=""
 CXXFLAGS=""
