@@ -113,6 +113,15 @@ ninja-build
 ctest --output-on-failure
 popd
 
+emerge_dep libnetconf2
+do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
+
+mkdir ${BUILD_DIR}/Netopeer2
+emerge_dep Netopeer2/keystored
+do_test_dep_cmake Netopeer2/keystored -j${CI_PARALLEL_JOBS}
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${PREFIX}/var-run" emerge_dep Netopeer2/server
+do_test_dep_cmake Netopeer2/server -j${CI_PARALLEL_JOBS}
+
 emerge_dep Catch
 do_test_dep_cmake Catch -j${CI_PARALLEL_JOBS}
 
