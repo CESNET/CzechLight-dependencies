@@ -113,6 +113,16 @@ ninja-build
 ctest --output-on-failure
 popd
 
+emerge_dep libnetconf2
+do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
+
+mkdir ${BUILD_DIR}/Netopeer2
+emerge_dep Netopeer2/keystored
+do_test_dep_cmake Netopeer2/keystored
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${PREFIX}/var-run" emerge_dep Netopeer2/server
+# disable parallel test due to hardcoded /tmp paths
+do_test_dep_cmake Netopeer2/server --timeout 30
+
 emerge_dep Catch
 do_test_dep_cmake Catch -j${CI_PARALLEL_JOBS}
 
