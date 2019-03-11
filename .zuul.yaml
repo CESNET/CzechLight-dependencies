@@ -41,6 +41,14 @@
             roles: *common_roles
             timeout: 1800
 
+        - f29-clang-tsan:
+            provides: CzechLight-deps-f29-clang-tsan
+            vars: *common_vars
+            required-projects: *projects
+            post-run: *common_post_run
+            roles: *common_roles
+            timeout: 1800
+
         # clang w/ ASAN+UBSAN appears to be broken in Catch:
         # : && /usr/bin/clang++  -fsanitize=address -fsanitize=undefined -stdlib=libc++ -g  -fsanitize=address -fsanitize=undefined   -rdynamic CMakeFiles/Benchmark.dir/projects/Benchmark/BenchMain.cpp.o CMakeFiles/Benchmark.dir/projects/Benchmark/StringificationBench.cpp.o  -o Benchmark   && :
         # /usr/bin/ld: Benchmark: hidden symbol `_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE11__recommendEm' isn't defined
