@@ -33,6 +33,15 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan ]]; then
     export LDFLAGS="-fsanitize=address ${LDFLAGS}"
 fi
 
+if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
+    export CFLAGS="-fsanitize=thread ${CFLAGS}"
+    export CXXFLAGS="-fsanitize=thread ${CXXFLAGS}"
+    export LDFLAGS="-fsanitize=thread ${LDFLAGS}"
+
+    # there *are* errors, and I do not want an early exit
+    export TSAN_OPTIONS="exitcode=0 log_path=/home/ci/zuul-output/logs/tsan.log"
+fi
+
 # We're reusing our artifacts, so we absolutely need a stable destdir.
 PREFIX=~/target
 mkdir ${PREFIX}
@@ -120,8 +129,7 @@ mkdir ${BUILD_DIR}/Netopeer2
 emerge_dep Netopeer2/keystored
 do_test_dep_cmake Netopeer2/keystored
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${PREFIX}/var-run" emerge_dep Netopeer2/server
-# disable parallel test due to hardcoded /tmp paths
-do_test_dep_cmake Netopeer2/server --timeout 30
+do_test_dep_cmake Netopeer2/server --timeout 30 -j${CI_PARALLEL_JOBS}
 
 emerge_dep Catch
 do_test_dep_cmake Catch -j${CI_PARALLEL_JOBS}
@@ -154,6 +162,8 @@ popd
 
 # verify whether sysrepo still works
 sysrepoctl --list
+
+ls -al /home/ci/zuul-output/logs/
 
 tar -C ~/target -cvJf ~/zuul-output/artifacts/${ARTIFACT} .
 exit 0
