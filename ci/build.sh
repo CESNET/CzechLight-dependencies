@@ -33,6 +33,15 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan ]]; then
     export LDFLAGS="-fsanitize=address ${LDFLAGS}"
 fi
 
+if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
+    export CFLAGS="-fsanitize=thread ${CFLAGS}"
+    export CXXFLAGS="-fsanitize=thread ${CXXFLAGS}"
+    export LDFLAGS="-fsanitize=thread ${LDFLAGS}"
+
+    # there *are* errors, and I do not want an early exit
+    export TSAN_OPTIONS="exitcode=0 log_path=/home/ci/zuul-output/logs/tsan.log"
+fi
+
 # We're reusing our artifacts, so we absolutely need a stable destdir.
 PREFIX=~/target
 mkdir ${PREFIX}
@@ -154,6 +163,8 @@ popd
 
 # verify whether sysrepo still works
 sysrepoctl --list
+
+ls -al /home/ci/zuul-output/logs/
 
 tar -C ~/target -cvJf ~/zuul-output/artifacts/${ARTIFACT} .
 exit 0

@@ -1,8 +1,7 @@
 - project:
     check:
       jobs:
-        - f29-gcc:
-            provides: CzechLight-deps-f29-gcc
+        - f29-clang-tsan:
             vars: &common_vars
               prepare_git_submodules: true
               artifacts:
@@ -24,34 +23,3 @@
               - github/rollbear/trompeloeil
               - github/AmokHuginnsson/replxx
             timeout: 1800
-
-        - f29-gcc-asan-ubsan:
-            provides: CzechLight-deps-f29-gcc-asan-ubsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f29-clang-asan:
-            provides: CzechLight-deps-f29-clang-asan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        # clang w/ ASAN+UBSAN appears to be broken in Catch:
-        # : && /usr/bin/clang++  -fsanitize=address -fsanitize=undefined -stdlib=libc++ -g  -fsanitize=address -fsanitize=undefined   -rdynamic CMakeFiles/Benchmark.dir/projects/Benchmark/BenchMain.cpp.o CMakeFiles/Benchmark.dir/projects/Benchmark/StringificationBench.cpp.o  -o Benchmark   && :
-        # /usr/bin/ld: Benchmark: hidden symbol `_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE11__recommendEm' isn't defined
-        #- f29-clang-asan-ubsan:
-        #    provides: CzechLight-deps-f29-clang-asan-ubsan
-        #    voting: false
-        #    vars: *common_vars
-        #    required-projects: *projects
-        #    post-run: *common_post_run
-        #    roles: *common_roles
-
-    promote:
-      jobs:
-        - promote-artifacts
