@@ -7,8 +7,12 @@ ZUUL_JOB_NAME=$(jq < ~/zuul-env.json -r '.job')
 ZUUL_PROJECT_SRC_DIR=$HOME/$(jq < ~/zuul-env.json -r '.project.src_dir')
 ZUUL_PROJECT_SHORT_NAME=$(jq < ~/zuul-env.json -r '.project.short_name')
 
+# We're reusing our artifacts, so we absolutely need a stable destdir.
+PREFIX=~/target
+mkdir ${PREFIX}
+
 CI_PARALLEL_JOBS=$(awk -vcpu=$(getconf _NPROCESSORS_ONLN) 'BEGIN{printf "%.0f", cpu*1.3+1}')
-CMAKE_OPTIONS=""
+CMAKE_OPTIONS="-DCMAKE_INSTALL_RPATH:INTERNAL=${PREFIX}/lib64 -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:INTERNAL=ON"
 CFLAGS=""
 CXXFLAGS=""
 LDFLAGS=""
@@ -42,14 +46,12 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     export TSAN_OPTIONS="exitcode=0 log_path=/home/ci/zuul-output/logs/tsan.log"
 fi
 
-# We're reusing our artifacts, so we absolutely need a stable destdir.
-PREFIX=~/target
-mkdir ${PREFIX}
 BUILD_DIR=~/build
 mkdir ${BUILD_DIR}
 export PATH=${PREFIX}/bin:$PATH
 export LD_LIBRARY_PATH=${PREFIX}/lib64:${PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 export PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig:${PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}
+
 
 build_dep_cmake() {
     mkdir ${BUILD_DIR}/$1
