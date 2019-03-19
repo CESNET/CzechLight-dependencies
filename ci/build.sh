@@ -136,6 +136,9 @@ do_test_dep_cmake Netopeer2/server --timeout 30 -j${CI_PARALLEL_JOBS}
 emerge_dep Catch
 do_test_dep_cmake Catch -j${CI_PARALLEL_JOBS}
 
+emerge_dep doctest
+do_test_dep_cmake doctest -j${CI_PARALLEL_JOBS}
+
 # Trompeloeil is a magic snowflake because it attempts to download and build Catch and kcov when building in a debug mode...
 CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
 
