@@ -28,3 +28,6 @@
 [submodule "replxx"]
 	path = replxx
 	url = ../../github/AmokHuginnsson/replxx
+[submodule "doctest"]
+	path = doctest
+	url = ../../github/onqtam/doctest
