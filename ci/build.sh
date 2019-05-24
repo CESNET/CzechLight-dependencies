@@ -56,8 +56,8 @@ export PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig:${PREFIX}/lib/pkgconfig${PKG_CO
 build_dep_cmake() {
     mkdir ${BUILD_DIR}/$1
     pushd ${BUILD_DIR}/$1
-    cmake -GNinja ${CMAKE_OPTIONS} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Debug} -DCMAKE_INSTALL_PREFIX=${PREFIX} ${ZUUL_PROJECT_SRC_DIR}/$1
-    ninja-build install
+    cmake -GNinja ${CMAKE_OPTIONS} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Debug} -DCMAKE_INSTALL_PREFIX=${PREFIX} --debug-trycompile --debug-output ${ZUUL_PROJECT_SRC_DIR}/$1
+    ninja-build -v install
     popd
 }
 
@@ -110,7 +110,9 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo" emerge_dep sysrepo || true
+tar -C ${BUILD_DIR} -cvJf ~/zuul-output/logs/wtf-sysrepo.tar.bz2 sysrepo
+exit 1
 
 # These tests are only those which can run on the global repo.
 # They also happen to fail when run in parallel. That's expected, they manipulate a shared repository.
