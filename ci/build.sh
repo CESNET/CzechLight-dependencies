@@ -110,7 +110,9 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo" emerge_dep sysrepo || true
+cat ${BUILD_DIR}/sysrepo/CMakeFiles/CMakeError.log
+exit 1
 
 # These tests are only those which can run on the global repo.
 # They also happen to fail when run in parallel. That's expected, they manipulate a shared repository.
