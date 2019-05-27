@@ -125,6 +125,7 @@ ctest --output-on-failure
 popd
 
 emerge_dep libnetconf2
+strace ${BUILD_DIR}/libnetconf2/tests/test_io
 do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 
 mkdir ${BUILD_DIR}/Netopeer2
