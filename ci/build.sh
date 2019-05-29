@@ -125,7 +125,11 @@ ctest --output-on-failure
 popd
 
 emerge_dep libnetconf2
-do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
+# https://github.com/CESNET/libnetconf2/issues/153
+do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS} -E test_io
+pushd ${BUILD_DIR}/libnetconf2
+ctest --output-on-failure -R test_io </dev/null
+popd
 
 mkdir ${BUILD_DIR}/Netopeer2
 emerge_dep Netopeer2/keystored
