@@ -10,6 +10,8 @@ ZUUL_PROJECT_SHORT_NAME=$(jq < ~/zuul-env.json -r '.project.short_name')
 # We're reusing our artifacts, so we absolutely need a stable destdir.
 PREFIX=~/target
 mkdir ${PREFIX}
+RUN_TMP=${PREFIX}/run-tmp
+mkdir ${RUN_TMP}
 
 CI_PARALLEL_JOBS=$(awk -vcpu=$(getconf _NPROCESSORS_ONLN) 'BEGIN{printf "%.0f", cpu*1.3+1}')
 CMAKE_OPTIONS="-DCMAKE_INSTALL_RPATH:INTERNAL=${PREFIX}/lib64 -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:INTERNAL=ON"
@@ -110,7 +112,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo -DDAEMON_PID_FILE=${RUN_TMP}/sysrepod.pid -DDAEMON_SOCKET=${RUN_TMP}/sysrepod.sock -DPLUGIN_DAEMON_PID_FILE=${RUN_TMP}/sysrepo-plugind.pid -DSUBSCRIPTIONS_SOCKET_DIR=${RUN_TMP}/sysrepo-subscriptions" emerge_dep sysrepo
 
 # These tests are only those which can run on the global repo.
 # They also happen to fail when run in parallel. That's expected, they manipulate a shared repository.
@@ -118,10 +120,14 @@ do_test_dep_cmake sysrepo
 # Now build it once again somewhere else and execute the whole testsuite on them.
 mkdir ${BUILD_DIR}/build-sysrepo-tests
 pushd ${BUILD_DIR}/build-sysrepo-tests
+mkdir ${RUN_TMP}/b-s-t
 cmake -GNinja ${CMAKE_OPTIONS} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Debug} -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+    -DDAEMON_PID_FILE=${RUN_TMP}/b-s-t/sysrepod.pid -DDAEMON_SOCKET=${RUN_TMP}/b-s-t/sysrepod.sock \
+    -DPLUGIN_DAEMON_PID_FILE=${RUN_TMP}/b-s-t/sysrepo-plugind.pid -DSUBSCRIPTIONS_SOCKET_DIR=${RUN_TMP}/b-s-t/sysrepo-subscriptions \
 ${ZUUL_PROJECT_SRC_DIR}/sysrepo
 ninja-build
 ctest --output-on-failure
+rm -rf ${RUN_TMP}/b-s-t
 popd
 
 emerge_dep libnetconf2
@@ -134,7 +140,7 @@ popd
 mkdir ${BUILD_DIR}/Netopeer2
 emerge_dep Netopeer2/keystored
 do_test_dep_cmake Netopeer2/keystored
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${PREFIX}/var-run" emerge_dep Netopeer2/server
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP}" emerge_dep Netopeer2/server
 do_test_dep_cmake Netopeer2/server --timeout 30 -j${CI_PARALLEL_JOBS}
 
 emerge_dep doctest
@@ -169,5 +175,8 @@ popd
 # verify whether sysrepo still works
 sysrepoctl --list
 
+rm -rf ${RUN_TMP}
+mkdir ${RUN_TMP}
+touch ${RUN_TMP}/.keep
 tar -C ~/target -cvJf ~/zuul-output/artifacts/${ARTIFACT} .
 exit 0
