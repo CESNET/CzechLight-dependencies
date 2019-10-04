@@ -109,20 +109,42 @@ emerge_dep libredblack --with-pic
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF -DGEN_JAVA_BINDINGS=OFF" emerge_dep libyang
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
+ps auxw
+ls -al /tmp
+
 # sysrepo needs to use a persistent repo location
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo" emerge_dep sysrepo
+
+ps auxw
+ls -al /tmp
 
 # These tests are only those which can run on the global repo.
 # They also happen to fail when run in parallel. That's expected, they manipulate a shared repository.
 do_test_dep_cmake sysrepo
+
+ps auxw
+ls -al /tmp
+
 # Now build it once again somewhere else and execute the whole testsuite on them.
 mkdir ${BUILD_DIR}/build-sysrepo-tests
 pushd ${BUILD_DIR}/build-sysrepo-tests
 cmake -GNinja ${CMAKE_OPTIONS} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Debug} -DCMAKE_INSTALL_PREFIX=${PREFIX} \
 ${ZUUL_PROJECT_SRC_DIR}/sysrepo
+
+
+ps auxw
+ls -al /tmp
+
 ninja-build
+
+ps auxw
+ls -al /tmp
+
 ctest --output-on-failure
 popd
+
+ps auxw
+ls -al /tmp
 
 emerge_dep libnetconf2
 # https://github.com/CESNET/libnetconf2/issues/153
