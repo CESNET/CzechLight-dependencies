@@ -18,6 +18,7 @@ CMAKE_OPTIONS="-DCMAKE_INSTALL_RPATH:INTERNAL=${PREFIX}/lib64 -DCMAKE_INSTALL_RP
 CFLAGS=""
 CXXFLAGS=""
 LDFLAGS=""
+CI_EXTRA_OPT_SYSREPO=""
 
 if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CC=clang
@@ -46,6 +47,8 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
 
     # there *are* errors, and I do not want an early exit
     export TSAN_OPTIONS="exitcode=0 log_path=/home/ci/zuul-output/logs/tsan.log"
+
+    CI_EXTRA_OPT_SYSREPO="-DOPER_DATA_PROVIDE_TIMEOUT=15"
 fi
 
 BUILD_DIR=~/build
@@ -112,7 +115,9 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo -DDAEMON_PID_FILE=${RUN_TMP}/sysrepod.pid -DDAEMON_SOCKET=${RUN_TMP}/sysrepod.sock -DPLUGIN_DAEMON_PID_FILE=${RUN_TMP}/sysrepo-plugind.pid -DSUBSCRIPTIONS_SOCKET_DIR=${RUN_TMP}/sysrepo-subscriptions" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo -DDAEMON_PID_FILE=${RUN_TMP}/sysrepod.pid -DDAEMON_SOCKET=${RUN_TMP}/sysrepod.sock -DPLUGIN_DAEMON_PID_FILE=${RUN_TMP}/sysrepo-plugind.pid -DSUBSCRIPTIONS_SOCKET_DIR=${RUN_TMP}/sysrepo-subscriptions ${CI_EXTRA_OPT_SYSREPO}" emerge_dep sysrepo
+grep TIMEOUT ${BUILD_DIR}/sysrepo/CMakeCache.txt
+exit 1
 
 # These tests are only those which can run on the global repo.
 # They also happen to fail when run in parallel. That's expected, they manipulate a shared repository.
