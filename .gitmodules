@@ -28,3 +28,6 @@
 [submodule "doctest"]
 	path = doctest
 	url = ../../github/onqtam/doctest
+[submodule "cppcodec"]
+	path = cppcodec
+	url = ../../github/tplgy/cppcodec

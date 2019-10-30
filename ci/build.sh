@@ -52,7 +52,7 @@ BUILD_DIR=~/build
 mkdir ${BUILD_DIR}
 export PATH=${PREFIX}/bin:$PATH
 export LD_LIBRARY_PATH=${PREFIX}/lib64:${PREFIX}/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
-export PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig:${PREFIX}/lib/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}
+export PKG_CONFIG_PATH=${PREFIX}/lib64/pkgconfig:${PREFIX}/lib/pkgconfig:${PREFIX}/share/pkgconfig${PKG_CONFIG_PATH:+:$PKG_CONFIG_PATH}
 
 
 build_dep_cmake() {
@@ -158,6 +158,9 @@ do_test_dep_cmake spdlog -j${CI_PARALLEL_JOBS}
 # examples are broken on clang+ubsan because of their STL override
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BuildExamples=OFF" emerge_dep replxx
 do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
+
+# testing requires Catch, and we no longer carry that one
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
 
 mkdir ${BUILD_DIR}/boost
 pushd ${BUILD_DIR}/boost
