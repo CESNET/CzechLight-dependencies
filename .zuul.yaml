@@ -24,6 +24,7 @@
               - github/rollbear/trompeloeil
               - github/tplgy/cppcodec
               - github/AmokHuginnsson/replxx
+              - github/pybind/pybind11
             timeout: 1800
 
         - f29-gcc-asan-ubsan:

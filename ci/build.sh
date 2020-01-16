@@ -162,6 +162,9 @@ do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
 # testing requires Catch, and we no longer carry that one
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
 
+emerge_dep pybind11
+do_test_dep pybind11 -j${CI_PARALLEL_JOBS}
+
 mkdir ${BUILD_DIR}/boost
 pushd ${BUILD_DIR}/boost
 BOOST_VERSION=boost_1_69_0
