@@ -1,8 +1,8 @@
 - project:
     check:
       jobs:
-        - f29-gcc:
-            provides: CzechLight-deps-f29-gcc
+        - f31-gcc:
+            provides: CzechLight-deps-f31-gcc
             vars: &common_vars
               prepare_git_submodules: true
               artifacts:
