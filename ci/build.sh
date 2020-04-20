@@ -106,7 +106,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_PYTHON_BINDINGS=OFF"
 
 ARTIFACT=$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.xz
 
-emerge_dep libredblack --with-pic
+emerge_dep libredblack --with-pic --without-rbgen
 
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF -DGEN_JAVA_BINDINGS=OFF" emerge_dep libyang
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
