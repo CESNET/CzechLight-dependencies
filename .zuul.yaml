@@ -1,8 +1,8 @@
 - project:
     check:
       jobs:
-        - f29-gcc:
-            provides: CzechLight-deps-f29-gcc
+        - f31-gcc-asan-ubsan:
+            provides: CzechLight-deps-f31-gcc-asan-ubsan
             vars: &common_vars
               prepare_git_submodules: true
               artifacts:
@@ -26,63 +26,3 @@
               - github/AmokHuginnsson/replxx
               - github/pybind/pybind11
             timeout: 1800
-
-        - f29-gcc-asan-ubsan:
-            provides: CzechLight-deps-f29-gcc-asan-ubsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f29-clang-asan:
-            provides: CzechLight-deps-f29-clang-asan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f29-clang-tsan:
-            provides: CzechLight-deps-f29-clang-tsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f31-gcc:
-            provides: CzechLight-deps-f31-gcc
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f31-gcc-asan-ubsan:
-            provides: CzechLight-deps-f31-gcc-asan-ubsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f31-clang-asan:
-            provides: CzechLight-deps-f31-clang-asan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f31-clang-tsan:
-            provides: CzechLight-deps-f31-clang-tsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-    promote:
-      jobs:
-        - promote-artifacts
