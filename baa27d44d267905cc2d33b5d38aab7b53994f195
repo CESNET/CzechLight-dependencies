@@ -16,6 +16,24 @@
       "revId": "baa27d44d267905cc2d33b5d38aab7b53994f195",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd6ddd18_dbf4cd26",
+        "filename": "libyang",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-05-13T10:57:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93d6086c_3151f66c",
+      "revId": "baa27d44d267905cc2d33b5d38aab7b53994f195",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": false
     }
   ]
 }
