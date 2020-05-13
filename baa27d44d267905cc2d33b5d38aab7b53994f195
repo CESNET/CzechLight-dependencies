@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "93d6086c_3151f66c",
+        "filename": "libyang",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-05-13T10:41:09Z",
+      "side": 1,
+      "message": "This is the patch you proposed, not the patch Michal merged upstream: https://gerrit.cesnet.cz/plugins/gitiles/github/CESNET/libyang/+/926715683c5afed203358c24f64aa70b501f057c\n\nPreviously, that one was not available in Gerrit because our replication runs only twice a day. I\u0027ve now pushed it and it\u0027s there.",
+      "revId": "baa27d44d267905cc2d33b5d38aab7b53994f195",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    }
+  ]
+}
