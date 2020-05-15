@@ -1,13 +1,13 @@
 - project:
     check:
       jobs:
-        - f29-gcc:
-            provides: CzechLight-deps-f29-gcc
+        - f31-gcc:
+            provides: CzechLight-deps-f31-gcc
             vars: &common_vars
               prepare_git_submodules: true
               artifacts:
                 name: tarball
-                glob: '*.tar.xz'
+                glob: '*.tar.zst'
             post-run: &common_post_run
               - ci/post.yaml
             roles: &common_roles
@@ -25,14 +25,6 @@
               - github/tplgy/cppcodec
               - github/AmokHuginnsson/replxx
               - github/pybind/pybind11
-            timeout: 1800
-
-        - f31-gcc:
-            provides: CzechLight-deps-f31-gcc
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
             timeout: 1800
 
         - f31-gcc-asan-ubsan:

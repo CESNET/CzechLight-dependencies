@@ -109,7 +109,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DENABLE_BUILD_TESTS=ON -DENABLE_VALGRIND_TESTS=
 # nuke python2 builds because we cannot write to the site_path
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_PYTHON_BINDINGS=OFF"
 
-ARTIFACT=$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.xz
+ARTIFACT=$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.zst
 
 emerge_dep libredblack --with-pic --without-rbgen
 
@@ -172,7 +172,7 @@ do_test_dep_cmake pybind11 -j${CI_PARALLEL_JOBS}
 
 mkdir ${BUILD_DIR}/boost
 pushd ${BUILD_DIR}/boost
-BOOST_VERSION=boost_1_69_0
+BOOST_VERSION=boost_1_71_0
 wget https://object-store.cloud.muni.cz/swift/v1/ci-artifacts-public/mirror/buildroot/boost/${BOOST_VERSION}.tar.bz2
 tar -xf ${BOOST_VERSION}.tar.bz2
 cd ${BOOST_VERSION}
@@ -189,5 +189,5 @@ sysrepoctl --list
 rm -rf ${RUN_TMP}
 mkdir ${RUN_TMP}
 touch ${RUN_TMP}/.keep
-tar -C ~/target -cvJf ~/zuul-output/artifacts/${ARTIFACT} .
+tar -C ~/target -cvf - | zstd -T0 | ~/zuul-output/artifacts/${ARTIFACT} .
 exit 0
