@@ -172,7 +172,7 @@ do_test_dep_cmake pybind11 -j${CI_PARALLEL_JOBS}
 
 mkdir ${BUILD_DIR}/boost
 pushd ${BUILD_DIR}/boost
-BOOST_VERSION=boost_1_69_0
+BOOST_VERSION=boost_1_71_0
 wget https://object-store.cloud.muni.cz/swift/v1/ci-artifacts-public/mirror/buildroot/boost/${BOOST_VERSION}.tar.bz2
 tar -xf ${BOOST_VERSION}.tar.bz2
 cd ${BOOST_VERSION}
