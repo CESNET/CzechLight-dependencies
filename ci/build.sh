@@ -27,21 +27,13 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export LDFLAGS="-stdlib=libc++"
 fi
 
-if [[ $ZUUL_JOB_NAME =~ .*-ubsan ]]; then
-    export CFLAGS="-fsanitize=undefined ${CFLAGS}"
-    export CXXFLAGS="-fsanitize=undefined ${CXXFLAGS}"
-    export LDFLAGS="-fsanitize=undefined ${LDFLAGS}"
-fi
+if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
+    export CFLAGS="-fsanitize=address,undefined ${CFLAGS}"
+    export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
+    export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
 
-if [[ $ZUUL_JOB_NAME =~ .*-asan ]]; then
-    export CFLAGS="-fsanitize=address ${CFLAGS}"
-    export CXXFLAGS="-fsanitize=address ${CXXFLAGS}"
-    export LDFLAGS="-fsanitize=address ${LDFLAGS}"
-
-    if [[ $ZUUL_JOB_NAME =~ f31-.* ]]; then
-        # On Fedora 31, libev's ev_realloc looks fishy for sysrepoctl & sysrepocfg
-        export LSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/lsan.supp:print_suppressions=0"
-    fi
+    # On Fedora 31, libev's ev_realloc looks fishy for sysrepoctl & sysrepocfg
+    export LSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/lsan.supp:print_suppressions=0"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then

@@ -27,16 +27,8 @@
               - github/pybind/pybind11
             timeout: 1800
 
-        - f31-gcc-asan-ubsan:
-            provides: CzechLight-deps-f31-gcc-asan-ubsan
-            vars: *common_vars
-            required-projects: *projects
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f31-clang-asan:
-            provides: CzechLight-deps-f31-clang-asan
+        - f31-clang-asan-ubsan:
+            provides: CzechLight-deps-f31-clang-asan-ubsan
             vars: *common_vars
             required-projects: *projects
             post-run: *common_post_run
@@ -49,7 +41,7 @@
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
-            timeout: 1800
+            timeout: 2700
 
     promote:
       jobs:
