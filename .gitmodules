@@ -34,3 +34,6 @@
 [submodule "pybind11"]
 	path = pybind11
 	url = ../../github/pybind/pybind11
+[submodule "sdbus-cpp"]
+	path = sdbus-cpp
+	url = ../../github/Kistler-Group/sdbus-cpp
