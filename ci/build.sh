@@ -163,6 +163,9 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
 emerge_dep pybind11
 do_test_dep_cmake pybind11 -j${CI_PARALLEL_JOBS}
 
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_DOC=OFF -DBUILD_CODE_GEN=ON" emerge_dep sdbus-cpp
+# tests perform some automatic downloads -> skip them
+
 mkdir ${BUILD_DIR}/boost
 pushd ${BUILD_DIR}/boost
 BOOST_VERSION=boost_1_71_0

@@ -25,6 +25,7 @@
               - github/tplgy/cppcodec
               - github/AmokHuginnsson/replxx
               - github/pybind/pybind11
+              - github/Kistler-Group/sdbus-cpp
             timeout: 1800
 
         - f31-clang-asan-ubsan:
