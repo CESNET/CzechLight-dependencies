@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "28814734_a6ba86bf",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-06-08T09:07:32Z",
+      "side": 1,
+      "message": "Does this apply only to change C or to both B and C? IOW, do I upload change B immediately after uploading change A, or do I have to wait?",
+      "revId": "6d3603ddebcd9f9ab3bc9d557030e7c73a7cab28",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    }
+  ]
+}
