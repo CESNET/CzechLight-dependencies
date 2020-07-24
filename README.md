@@ -54,3 +54,10 @@ If everything builds, then the change is good to go 🌈 🦄 🍻.
 - Add the submodule here: `git submodule add ../../github/ORG/REPO REPO`
 - Modify `ci/build.sh` to start building this dependency
 - Propose changes to all consumers as shown above
+
+## Testing experimental changes
+
+When an upstream project fixes a bug or implements a suggestion that we asked for, their commits typically end up in their GitHub repo, but not neccessarily in a branch that we're trakcing.
+Also, the CI builds against a Gerrit copy of these projects, and the mirroring script only runs twice a day.
+In order to test changes earlier, all CzechLight developers can push changes to branches named `cesnet/*`.
+E.g., changes to `libyang` can be pushed to the repo `github/CESNET/libyang2`, branch `cesnet/2020-07-24-fix-random-stuff`.
