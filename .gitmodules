@@ -10,9 +10,6 @@
 [submodule "libnetconf2"]
 	path = libnetconf2
 	url = ../../github/CESNET/libnetconf2
-[submodule "libredblack"]
-	path = libredblack
-	url = ../../github/sysrepo/libredblack
 [submodule "docopt.cpp"]
 	path = docopt.cpp
 	url = ../../github/docopt/docopt.cpp
