@@ -36,6 +36,8 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export LSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/lsan.supp:print_suppressions=0"
 fi
 
+SYSREPO_TEST_FLAGS=""
+
 if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     export CFLAGS="-fsanitize=thread ${CFLAGS}"
     export CXXFLAGS="-fsanitize=thread ${CXXFLAGS}"
@@ -43,6 +45,9 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
 
     # there *are* errors, and I do not want an early exit
     export TSAN_OPTIONS="exitcode=0 log_path=/home/ci/zuul-output/logs/tsan.log"
+
+    # This test regularly timeouts, disable it for now
+    SYSREPO_TEST_FLAGS="-E test_process"
 fi
 
 BUILD_DIR=~/build
@@ -103,42 +108,20 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_PYTHON_BINDINGS=OFF"
 
 ARTIFACT=$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.zst
 
-emerge_dep libredblack --with-pic --without-rbgen
-
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF -DGEN_JAVA_BINDINGS=OFF" emerge_dep libyang
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPOSITORY_LOC=${PREFIX}/etc-sysrepo -DDAEMON_PID_FILE=${RUN_TMP}/sysrepod.pid -DDAEMON_SOCKET=${RUN_TMP}/sysrepod.sock -DPLUGIN_DAEMON_PID_FILE=${RUN_TMP}/sysrepo-plugind.pid -DSUBSCRIPTIONS_SOCKET_DIR=${RUN_TMP}/sysrepo-subscriptions" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF" emerge_dep sysrepo
+TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS} ${SYSREPO_TEST_FLAGS}
 
-# These tests are only those which can run on the global repo.
-# They also happen to fail when run in parallel. That's expected, they manipulate a shared repository.
-do_test_dep_cmake sysrepo
-# Now build it once again somewhere else and execute the whole testsuite on them.
-mkdir ${BUILD_DIR}/build-sysrepo-tests
-pushd ${BUILD_DIR}/build-sysrepo-tests
-mkdir ${RUN_TMP}/b-s-t
-cmake -GNinja ${CMAKE_OPTIONS} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE:-Debug} -DCMAKE_INSTALL_PREFIX=${PREFIX} \
-    -DDAEMON_PID_FILE=${RUN_TMP}/b-s-t/sysrepod.pid -DDAEMON_SOCKET=${RUN_TMP}/b-s-t/sysrepod.sock \
-    -DPLUGIN_DAEMON_PID_FILE=${RUN_TMP}/b-s-t/sysrepo-plugind.pid -DSUBSCRIPTIONS_SOCKET_DIR=${RUN_TMP}/b-s-t/sysrepo-subscriptions \
-${ZUUL_PROJECT_SRC_DIR}/sysrepo
-ninja-build
-ctest --output-on-failure
-rm -rf ${RUN_TMP}/b-s-t
-popd
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
+do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 
-emerge_dep libnetconf2
-# https://github.com/CESNET/libnetconf2/issues/153
-do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS} -E test_io
-pushd ${BUILD_DIR}/libnetconf2
-ctest --output-on-failure -R test_io </dev/null
-popd
-
-mkdir ${BUILD_DIR}/Netopeer2
-emerge_dep Netopeer2/keystored
-do_test_dep_cmake Netopeer2/keystored
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP}" emerge_dep Netopeer2/server
-do_test_dep_cmake Netopeer2/server --timeout 30 -j${CI_PARALLEL_JOBS}
+# DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
+# waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP}" emerge_dep Netopeer2
+# New Netopeer2 doesn't have tests
 
 emerge_dep doctest
 do_test_dep_cmake doctest -j${CI_PARALLEL_JOBS}
@@ -185,5 +168,6 @@ sysrepoctl --list
 rm -rf ${RUN_TMP}
 mkdir ${RUN_TMP}
 touch ${RUN_TMP}/.keep
+cp "${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" ~/target
 tar -C ~/target --totals -cv . | zstd -T0 > ~/zuul-output/artifacts/${ARTIFACT}
 exit 0
