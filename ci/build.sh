@@ -127,7 +127,7 @@ ctest --output-on-failure
 rm -rf ${RUN_TMP}/b-s-t
 popd
 
-emerge_dep libnetconf2
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
 # https://github.com/CESNET/libnetconf2/issues/153
 do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS} -E test_io
 pushd ${BUILD_DIR}/libnetconf2
