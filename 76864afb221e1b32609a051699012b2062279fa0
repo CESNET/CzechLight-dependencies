@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "77e66e70_9b573739",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T09:28:03Z",
+      "side": 1,
+      "message": "This is a custom patch of ours, right? Please put that into the commit message, so that we know and that we won\u0027t forget the next time we update libnetconf2.\n\nAlso, the commit message at https://gerrit.cesnet.cz/plugins/gitiles/github/CESNET/libnetconf2/+/4be798dc8bd8f785e732ff41909686377f8b0010%5E!/ should say something along the lines of \"the version which ships in Fedora is actually patched up properly\", etc etc. Well, even better, let\u0027s take this upstream and make a PR. The reasoning should go roughly like:\n\n- modern distros are shipping this new enough version (which libnetconf2 considers broken)\n- at least on Fedora, they are shipping patches which unbreak it\n- there\u0027s been no fixed release upstream yet, so even if I build form their latest stable-0.9 branch (which means that I\u0027m getting code which is known to work), libnetconf2 refuses to build\n\nAre there any other non-integrated patches here, perhaps to other projects?",
+      "range": {
+        "startLine": 113,
+        "startChar": 32,
+        "endLine": 113,
+        "endChar": 58
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "26a9b9f9_dddf5ebf",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T09:28:03Z",
+      "side": 1,
+      "message": "This needs an explanation -- without this flag on, netopeer2 would say \"changes commited\" before the callbacks in sysrepo have concluded",
+      "range": {
+        "startLine": 120,
+        "startChar": 32,
+        "endLine": 120,
+        "endChar": 53
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    }
+  ]
+}

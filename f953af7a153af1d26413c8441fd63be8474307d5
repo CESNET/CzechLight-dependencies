@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2403b9aa_78b3d197",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T09:28:03Z",
+      "side": 0,
+      "message": "Also remove that git submodule, please",
+      "revId": "f953af7a153af1d26413c8441fd63be8474307d5",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    }
+  ]
+}
