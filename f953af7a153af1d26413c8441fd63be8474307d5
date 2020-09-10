@@ -16,6 +16,24 @@
       "revId": "f953af7a153af1d26413c8441fd63be8474307d5",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce874dab_b68c650a",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-09-10T12:28:26Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2403b9aa_78b3d197",
+      "revId": "f953af7a153af1d26413c8441fd63be8474307d5",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": false
     }
   ]
 }

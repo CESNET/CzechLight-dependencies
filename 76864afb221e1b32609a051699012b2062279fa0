@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "aac94db3_3436fb6c",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-09-10T12:28:26Z",
+      "side": 1,
+      "message": "Oh yeah, I forgot about this patch. I opened a PR",
+      "parentUuid": "77e66e70_9b573739",
+      "range": {
+        "startLine": 113,
+        "startChar": 32,
+        "endLine": 113,
+        "endChar": 58
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b0956a4_a9c19142",
         "filename": "ci/build.sh",
         "patchSetId": 43
@@ -96,6 +120,30 @@
     },
     {
       "key": {
+        "uuid": "d7cfa190_d18f4ce9",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-09-10T12:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b982e9b5_f259df51",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 62
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "26a9b9f9_dddf5ebf",
         "filename": "ci/build.sh",
         "patchSetId": 43
@@ -116,6 +164,30 @@
       "revId": "76864afb221e1b32609a051699012b2062279fa0",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebeb732f_0cb7bbbe",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-09-10T12:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26a9b9f9_dddf5ebf",
+      "range": {
+        "startLine": 120,
+        "startChar": 32,
+        "endLine": 120,
+        "endChar": 53
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": false
     }
   ]
 }
