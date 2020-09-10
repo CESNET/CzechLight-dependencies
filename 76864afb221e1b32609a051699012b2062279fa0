@@ -72,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "b982e9b5_f259df51",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2020-09-10T09:54:39Z",
+      "side": 1,
+      "message": "I think that\u0027s actually my bad, I reported that upstream, but never removed that workaround. (It was fixed during my vacation last summer I think, which explains that.)",
+      "parentUuid": "f590447f_a261c5f6",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 62
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26a9b9f9_dddf5ebf",
         "filename": "ci/build.sh",
         "patchSetId": 43
