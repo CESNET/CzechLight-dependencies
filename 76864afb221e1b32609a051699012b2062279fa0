@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "14c6c2e0_9e20336d",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-09-10T12:47:55Z",
+      "side": 1,
+      "message": "They don\u0027t really want to merge the patch but to be honest I don\u0027t mind. I asked on irc again and they said they will try to a new release right now. Until then, we can just use this patch without it being merged. I added a note to the commit message",
+      "parentUuid": "aac94db3_3436fb6c",
+      "range": {
+        "startLine": 113,
+        "startChar": 32,
+        "endLine": 113,
+        "endChar": 58
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b0956a4_a9c19142",
         "filename": "ci/build.sh",
         "patchSetId": 43
