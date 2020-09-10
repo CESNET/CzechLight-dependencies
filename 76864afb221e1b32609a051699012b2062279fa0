@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "f590447f_a261c5f6",
+        "filename": "ci/build.sh",
+        "patchSetId": 43
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2020-09-10T09:53:12Z",
+      "side": 1,
+      "message": "I thought it wasn\u0027t fixed. I\u0027ll test again, I must\u0027ve made a mistake",
+      "parentUuid": "0b0956a4_a9c19142",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 62
+      },
+      "revId": "76864afb221e1b32609a051699012b2062279fa0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26a9b9f9_dddf5ebf",
         "filename": "ci/build.sh",
         "patchSetId": 43
