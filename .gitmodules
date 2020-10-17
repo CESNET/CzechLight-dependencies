@@ -13,9 +13,6 @@
 [submodule "docopt.cpp"]
 	path = docopt.cpp
 	url = ../../github/docopt/docopt.cpp
-[submodule "spdlog"]
-	path = spdlog
-	url = ../../github/gabime/spdlog/
 [submodule "trompeloeil"]
 	path = trompeloeil
 	url = ../../github/rollbear/trompeloeil
@@ -28,9 +25,6 @@
 [submodule "cppcodec"]
 	path = cppcodec
 	url = ../../github/tplgy/cppcodec
-[submodule "pybind11"]
-	path = pybind11
-	url = ../../github/pybind/pybind11
 [submodule "sdbus-cpp"]
 	path = sdbus-cpp
 	url = ../../github/Kistler-Group/sdbus-cpp
