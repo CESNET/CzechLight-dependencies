@@ -149,9 +149,6 @@ CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
 emerge_dep docopt.cpp
 do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
 
-emerge_dep spdlog
-do_test_dep_cmake spdlog -j${CI_PARALLEL_JOBS}
-
 # examples are broken on clang+ubsan because of their STL override
 # https://github.com/AmokHuginnsson/replxx/issues/76
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BUILD_EXAMPLES=OFF" emerge_dep replxx
@@ -159,9 +156,6 @@ do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
 
 # testing requires Catch, and we no longer carry that one
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
-
-emerge_dep pybind11
-do_test_dep_cmake pybind11 -j${CI_PARALLEL_JOBS}
 
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_DOC=OFF -DBUILD_CODE_GEN=ON" emerge_dep sdbus-cpp
 # tests perform some automatic downloads -> skip them
