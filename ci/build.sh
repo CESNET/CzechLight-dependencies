@@ -132,9 +132,6 @@ CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
 emerge_dep docopt.cpp
 do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
 
-emerge_dep spdlog
-do_test_dep_cmake spdlog -j${CI_PARALLEL_JOBS}
-
 # examples are broken on clang+ubsan because of their STL override
 # https://github.com/AmokHuginnsson/replxx/issues/76
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BUILD_EXAMPLES=OFF" emerge_dep replxx
@@ -143,24 +140,8 @@ do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
 # testing requires Catch, and we no longer carry that one
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
 
-emerge_dep pybind11
-do_test_dep_cmake pybind11 -j${CI_PARALLEL_JOBS}
-
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_DOC=OFF -DBUILD_CODE_GEN=ON" emerge_dep sdbus-cpp
 # tests perform some automatic downloads -> skip them
-
-mkdir ${BUILD_DIR}/boost
-pushd ${BUILD_DIR}/boost
-BOOST_VERSION=boost_1_71_0
-wget https://object-store.cloud.muni.cz/swift/v1/ci-artifacts-public/mirror/buildroot/boost/${BOOST_VERSION}.tar.bz2
-tar -xf ${BOOST_VERSION}.tar.bz2
-cd ${BOOST_VERSION}
-./bootstrap.sh --prefix=${PREFIX} --with-toolset=${CC:-gcc}
-./b2 --ignore-site-config toolset=${CC:-gcc} ${CXXFLAGS:+cxxflags="${CXXFLAGS}"} ${LDFLAGS:+linkflags="${LDFLAGS}"} cxxstd=17 \
- -j ${CI_PARALLEL_JOBS} \
-  --with-system --with-thread --with-date_time --with-regex --with-serialization --with-chrono --with-atomic \
-  install
-popd
 
 # verify whether sysrepo still works
 sysrepoctl --list

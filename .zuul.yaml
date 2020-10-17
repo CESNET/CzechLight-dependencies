@@ -1,8 +1,8 @@
 - project:
     check:
       jobs:
-        - f31-gcc:
-            provides: CzechLight-deps-f31-gcc
+        - f32-gcc:
+            provides: CzechLight-deps-f32-gcc
             vars: &common_vars
               prepare_git_submodules: true
               artifacts:
@@ -20,24 +20,22 @@
               - github/CESNET/Netopeer2
               - github/onqtam/doctest
               - github/docopt/docopt.cpp
-              - github/gabime/spdlog
               - github/rollbear/trompeloeil
               - github/tplgy/cppcodec
               - github/AmokHuginnsson/replxx
-              - github/pybind/pybind11
               - github/Kistler-Group/sdbus-cpp
             timeout: 1800
 
-        - f31-clang-asan-ubsan:
-            provides: CzechLight-deps-f31-clang-asan-ubsan
+        - f32-clang-asan-ubsan:
+            provides: CzechLight-deps-f32-clang-asan-ubsan
             vars: *common_vars
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
             timeout: 1800
 
-        - f31-clang-tsan:
-            provides: CzechLight-deps-f31-clang-tsan
+        - f32-clang-tsan:
+            provides: CzechLight-deps-f32-clang-tsan
             vars: *common_vars
             required-projects: *projects
             post-run: *common_post_run
