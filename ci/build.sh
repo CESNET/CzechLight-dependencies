@@ -31,9 +31,6 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export CFLAGS="-fsanitize=address,undefined ${CFLAGS}"
     export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
-
-    # On Fedora 31, libev's ev_realloc looks fishy for sysrepoctl & sysrepocfg
-    export LSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/lsan.supp:print_suppressions=0"
 fi
 
 SYSREPO_TEST_FLAGS=""
