@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615df1b4_05caf47b",
+        "filename": "Netopeer2",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-01-07T14:17:07Z",
+      "side": 1,
+      "message": "There\u0027s been a new update this morning which touches timeout handling, https://github.com/CESNET/netopeer2/commit/7c5b112235449ba7ae7d6da6bdbbf0746d1f5da0. I\u0027ll update to that because this is something that\u0027s something that looks relevant to the problems we were having.",
+      "revId": "cd88475da5e4f3e223b5ff2b8296cb57873d347f",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
