@@ -31,7 +31,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export CFLAGS="-fsanitize=address,undefined ${CFLAGS}"
     export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
-    export ASAN_OPTIONS=intercept_tls_get_addr=0
+    export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 fi
 
 SYSREPO_TEST_FLAGS=""
@@ -40,12 +40,6 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     export CFLAGS="-fsanitize=thread ${CFLAGS}"
     export CXXFLAGS="-fsanitize=thread ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=thread ${LDFLAGS}"
-
-    # there *are* errors, and I do not want an early exit
-    export TSAN_OPTIONS="exitcode=0 log_path=/home/ci/zuul-output/logs/tsan.log"
-
-    # This test regularly timeouts, disable it for now
-    SYSREPO_TEST_FLAGS="-E test_process"
 fi
 
 BUILD_DIR=~/build
@@ -91,7 +85,6 @@ emerge_dep() {
 }
 
 if [[ $ZUUL_JOB_NAME =~ .*-asan.* ]]; then
-    CMAKE_OPTIONS="${CMAKE_OPTIONS} -DUSE_SR_MEM_MGMT:BOOL=OFF"
     # https://gitlab.kitware.com/cmake/cmake/issues/16609
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DTHREADS_HAVE_PTHREAD_ARG:BOOL=ON"
 fi
