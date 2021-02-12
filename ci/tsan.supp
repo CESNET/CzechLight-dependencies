@@ -1,4 +1,2 @@
-called_from_lib:libsysrepo.so.5
 race:libsysrepo.so.5
-mutex:libsysrepo.so.5
 race:tzset_internal
