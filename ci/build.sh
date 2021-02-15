@@ -34,8 +34,6 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 fi
 
-SYSREPO_TEST_FLAGS=""
-
 if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     export CFLAGS="-fsanitize=thread ${CFLAGS}"
     export CXXFLAGS="-fsanitize=thread ${CXXFLAGS}"
@@ -104,7 +102,7 @@ do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF" emerge_dep sysrepo
-TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS} ${SYSREPO_TEST_FLAGS}
+TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS}
 
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
 do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
