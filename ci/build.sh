@@ -101,7 +101,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF -DSYSREPO_SUPERUSER_UID=${UID}" emerge_dep sysrepo
 TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS}
 
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
@@ -109,7 +109,7 @@ do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 
 # DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
 # waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP}" emerge_dep Netopeer2
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} -DNACM_RECOVERY_UID=${UID}" emerge_dep Netopeer2
 # New Netopeer2 doesn't have tests
 
 emerge_dep doctest
