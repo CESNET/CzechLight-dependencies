@@ -19,12 +19,21 @@ CFLAGS="-O2 -g"
 CXXFLAGS="-O2 -g"
 LDFLAGS=""
 
+EXTRA_OPTIONS_SYSREPO=""
+EXTRA_OPTIONS_NETOPEER2=""
+
 if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CC=clang
     export CXX=clang++
     export LD=clang
     export CXXFLAGS="-stdlib=libc++"
     export LDFLAGS="-stdlib=libc++"
+fi
+
+if [[ $ZUUL_JOB_NAME =~ .*-gcc$ ]]; then
+    # This changes behavior of Netopeer2 (and sysrepo) in a rather subtle way. Try to cover both via our build matrix.
+    EXTRA_OPTIONS_SYSREPO="-DSYSREPO_SUPERUSER_UID=${UID}"
+    EXTRA_OPTIONS_NETOPEER2="-DNACM_RECOVERY_UID=${UID}"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
@@ -101,7 +110,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF" emerge_dep sysrepo
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF ${EXTRA_OPTIONS_SYSREPO}" emerge_dep sysrepo
 TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS}
 
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
@@ -109,7 +118,7 @@ do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 
 # DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
 # waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP}" emerge_dep Netopeer2
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
 # New Netopeer2 doesn't have tests
 
 emerge_dep doctest
