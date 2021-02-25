@@ -26,8 +26,6 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CC=clang
     export CXX=clang++
     export LD=clang
-    export CXXFLAGS="-stdlib=libc++"
-    export LDFLAGS="-stdlib=libc++"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-gcc$ ]]; then
