@@ -16,6 +16,24 @@
       "message": "https://github.com/sysrepo/sysrepo/issues/2341",
       "revId": "7edd45f4646579108242dfd706c20877d6d789f4",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24f01454_ac8f0cf0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-03-01T17:12:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "326d9888_40c293b3",
+      "revId": "7edd45f4646579108242dfd706c20877d6d789f4",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
