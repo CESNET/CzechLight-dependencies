@@ -16,6 +16,24 @@
       "message": "I have not tested this, I only checked that it\u0027s the latest devel of everything.",
       "revId": "c81920d31150fc14de940e5303dd523b364b7c66",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e84faa_30439819",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2021-04-07T08:59:44Z",
+      "side": 1,
+      "message": "It\u0027s for https://github.com/sysrepo/sysrepo/issues/2375 and it locally seems to work for me.",
+      "parentUuid": "c401a3c7_37f3a072",
+      "revId": "c81920d31150fc14de940e5303dd523b364b7c66",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
