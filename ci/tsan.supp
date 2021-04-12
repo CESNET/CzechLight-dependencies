@@ -1,2 +1,3 @@
-race:libsysrepo.so.5
 race:tzset_internal
+# https://github.com/sysrepo/sysrepo/issues/2323#issuecomment-818698439
+race:lyb_hash
