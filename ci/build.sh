@@ -38,6 +38,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export CFLAGS="-fsanitize=address,undefined ${CFLAGS}"
     export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
+    export ASAN_OPTIONS=intercept_tls_get_addr=0
     export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 fi
 
