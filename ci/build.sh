@@ -39,6 +39,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
     export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
+    export LSAN_OPTIONS=verbosity=1:log_threads=1
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
