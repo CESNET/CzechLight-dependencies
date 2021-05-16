@@ -1,8 +1,8 @@
 - project:
     check:
       jobs:
-        - f33-gcc:
-            provides: CzechLight-deps-f33-gcc
+        - f34-gcc:
+            provides: CzechLight-deps-f34-gcc
             vars: &common_vars
               prepare_git_submodules: true
               artifacts:
@@ -25,16 +25,16 @@
               - github/Kistler-Group/sdbus-cpp
             timeout: 1800
 
-        - f33-clang-asan-ubsan:
-            provides: CzechLight-deps-f33-clang-asan-ubsan
+        - f34-clang-asan-ubsan:
+            provides: CzechLight-deps-f34-clang-asan-ubsan
             vars: *common_vars
             required-projects: *projects
             post-run: *common_post_run
             roles: *common_roles
             timeout: 1800
 
-        - f33-clang-tsan:
-            provides: CzechLight-deps-f33-clang-tsan
+        - f34-clang-tsan:
+            provides: CzechLight-deps-f34-clang-tsan
             vars: *common_vars
             required-projects: *projects
             post-run: *common_post_run
