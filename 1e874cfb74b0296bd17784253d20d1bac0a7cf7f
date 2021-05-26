@@ -33,6 +33,24 @@
       "message": "Please bump the submodule in cla-sysrepo as well, after that, you\u0027ll have my CR+2 here. Take care to use a topic for all this (I set it for these two changes), otherwise it will break horribly after a merge.",
       "revId": "1e874cfb74b0296bd17784253d20d1bac0a7cf7f",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d210d28_8765731e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-05-26T09:15:22Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "c0cf2c83_e23a53cb",
+      "revId": "1e874cfb74b0296bd17784253d20d1bac0a7cf7f",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
