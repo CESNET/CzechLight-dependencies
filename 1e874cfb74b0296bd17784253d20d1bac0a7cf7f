@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff2305c3_01415fc9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-05-26T08:46:13Z",
+      "side": 1,
+      "message": "It would be nice to have a link/comment/whatever about the reason, but please don\u0027t change that now.",
+      "revId": "1e874cfb74b0296bd17784253d20d1bac0a7cf7f",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0cf2c83_e23a53cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2021-05-26T08:46:13Z",
+      "side": 1,
+      "message": "Please bump the submodule in cla-sysrepo as well, after that, you\u0027ll have my CR+2 here. Take care to use a topic for all this (I set it for these two changes), otherwise it will break horribly after a merge.",
+      "revId": "1e874cfb74b0296bd17784253d20d1bac0a7cf7f",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
