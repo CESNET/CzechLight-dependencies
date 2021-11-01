@@ -28,3 +28,9 @@
 [submodule "sdbus-cpp"]
 	path = sdbus-cpp
 	url = ../../github/Kistler-Group/sdbus-cpp
+[submodule "libyang-cpp"]
+	path = libyang-cpp
+	url = ../CzechLight/libyang-cpp
+[submodule "sysrepo-cpp"]
+	path = sysrepo-cpp
+	url = ../CzechLight/sysrepo-cpp
