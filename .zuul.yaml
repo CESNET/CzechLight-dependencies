@@ -14,7 +14,9 @@
               - zuul: return-built-artifact
             required-projects: &projects
               - github/CESNET/libyang
+              - CzechLight/libyang-cpp
               - github/sysrepo/sysrepo
+              - CzechLight/sysrepo-cpp
               - github/CESNET/libnetconf2
               - github/CESNET/Netopeer2
               - github/onqtam/doctest
