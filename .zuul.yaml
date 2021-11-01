@@ -23,6 +23,8 @@
               - github/tplgy/cppcodec
               - github/AmokHuginnsson/replxx
               - github/Kistler-Group/sdbus-cpp
+              - CzechLight/libyang-cpp
+              - CzechLight/sysrepo-cpp
             timeout: 1800
 
         - f34-clang-asan-ubsan:
