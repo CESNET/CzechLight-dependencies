@@ -108,9 +108,21 @@ ARTIFACT=$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.zst
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF -DGEN_JAVA_BINDINGS=OFF -DENABLE_CACHE=ON" emerge_dep libyang
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
+emerge_dep doctest
+do_test_dep_cmake doctest -j${CI_PARALLEL_JOBS}
+
+emerge_dep libyang-cpp
+do_test_dep_cmake libyang-cpp -j${CI_PARALLEL_JOBS}
+
 # sysrepo needs to use a persistent repo location
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF ${EXTRA_OPTIONS_SYSREPO}" emerge_dep sysrepo
 TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS}
+
+# Trompeloeil is a magic snowflake because it attempts to download and build Catch and kcov when building in a debug mode...
+CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
+
+emerge_dep sysrepo-cpp
+do_test_dep_cmake sysrepo-cpp -j${CI_PARALLEL_JOBS}
 
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
 do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
@@ -119,12 +131,6 @@ do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 # waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
 # New Netopeer2 doesn't have tests
-
-emerge_dep doctest
-do_test_dep_cmake doctest -j${CI_PARALLEL_JOBS}
-
-# Trompeloeil is a magic snowflake because it attempts to download and build Catch and kcov when building in a debug mode...
-CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
 
 emerge_dep docopt.cpp
 do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
