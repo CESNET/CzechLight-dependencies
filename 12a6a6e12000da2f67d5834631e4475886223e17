@@ -16,6 +16,23 @@
       "message": "TSAN strikes again",
       "revId": "12a6a6e12000da2f67d5834631e4475886223e17",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8857183b_628eabda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000056
+      },
+      "writtenOn": "2021-11-02T08:44:59Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "12a6a6e12000da2f67d5834631e4475886223e17",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
