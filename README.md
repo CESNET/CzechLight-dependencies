@@ -10,24 +10,33 @@ When uploading, make sure that all changes share the same topic in Gerrit (e.g.,
 1) Make a modification here in `CzechLight/dependencies`.
 This will be the change **A** ([example](https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/2693)).
 
-2) Update `CzechLight/cla-sysrepo` (change **B**: [example](https://gerrit.cesnet.cz/c/CzechLight/cla-sysrepo/+/2694)).
+2) Push commits to all "leaf" repositories (changes **B**, **C**, **D**, **E**, **F**):
+
+- `CzechLight/cla-sysrepo`
+- `CzechLight/netconf-cli`
+- `CzechLight/velia`
+- `CzechLight/rousette`
+- `CzechLight/sysrepo-ietf-alarms`
+
+If no actual changes are needed, feel free to use `git commit --allow-empty`.
 Use these `Depends-on` footer tags:
 ```shell
 Depends-on: https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/${A}
 ```
 
-3) Update `CzechLight/netconf-cli` as change **C** ([example](https://gerrit.cesnet.cz/c/CzechLight/netconf-cli/+/2695)).
+If you're feeling particularly lucky (are you, punk?), sometimes it might be safe to skip commits to repositories which are "obviously not affected" by the dependency update.
+If you do that, keep in mind that you're bypassing automation which was put in place for a good reason.
+If stuff breaks, you will have to keep all the pieces.
 
-```shell
-Depends-on: https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/${A}
-```
-
-4) Finally (and optionally), update `CzechLight/br2-external` so that it includes both `cla-sysrepo` and `netconf-cli` changes ([example](https://gerrit.cesnet.cz/c/CzechLight/br2-external/+/2698)).
+3) Finally, update `CzechLight/br2-external` so that it includes all changes made above ([example](https://gerrit.cesnet.cz/c/CzechLight/br2-external/+/2698)).
 The following `Depends-on` are needed:
 ```shell
 Depends-on: https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/${A}
 Depends-on: https://gerrit.cesnet.cz/c/CzechLight/cla-sysrepo/+/${B}
 Depends-on: https://gerrit.cesnet.cz/c/CzechLight/netconf-cli/+/${C}
+Depends-on: https://gerrit.cesnet.cz/c/CzechLight/velia/+/${D}
+Depends-on: https://gerrit.cesnet.cz/c/CzechLight/rousette/+/${E}
+Depends-on: https://gerrit.cesnet.cz/c/CzechLight/sysrepo-ietf-alarms/+/${F}
 ```
 
 If everything builds, then the change is good to go 🌈 🦄 🍻.
