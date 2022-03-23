@@ -1,53 +1,69 @@
+- job:
+    name: deps-f34-gcc
+    parent: f34-gcc
+    pre-run: &common_pre_run
+      - ci/pre.yaml
+    provides: CzechLight-deps-f34-gcc
+    vars: &common_vars
+      prepare_git_submodules: true
+      artifacts:
+        name: tarball
+        glob: '*.tar.zst'
+    post-run: &common_post_run
+      - ci/post.yaml
+    roles: &common_roles
+      - zuul: return-built-artifact
+    required-projects: &projects
+      - github/CESNET/libyang
+      - CzechLight/libyang-cpp
+      - github/sysrepo/sysrepo
+      - CzechLight/sysrepo-cpp
+      - github/CESNET/libnetconf2
+      - github/CESNET/Netopeer2
+      - name: github/onqtam/doctest
+        override-checkout: cesnet/2021-10-08
+      - github/docopt/docopt.cpp
+      - name: github/rollbear/trompeloeil
+        override-checkout: v41
+      - github/tplgy/cppcodec
+      - github/AmokHuginnsson/replxx
+      - github/Kistler-Group/sdbus-cpp
+    timeout: 1800
+
+- job:
+    name: deps-f34-clang-asan-ubsan
+    parent: f34-clang-asan-ubsan
+    provides: CzechLight-deps-f34-clang-asan-ubsan
+    vars: *common_vars
+    required-projects: *projects
+    pre-run: *common_pre_run
+    post-run: *common_post_run
+    roles: *common_roles
+    timeout: 1800
+
+- job:
+    name: deps-f34-clang-tsan
+    parent: f34-clang-tsan
+    provides: CzechLight-deps-f34-clang-tsan
+    vars: *common_vars
+    required-projects: *projects
+    pre-run: *common_pre_run
+    post-run: *common_post_run
+    roles: *common_roles
+    timeout: 2700
+
 - project:
     check:
       jobs:
-        - f34-gcc:
-            pre-run: &common_pre_run
-              - ci/pre.yaml
-            provides: CzechLight-deps-f34-gcc
-            vars: &common_vars
-              prepare_git_submodules: true
-              artifacts:
-                name: tarball
-                glob: '*.tar.zst'
-            post-run: &common_post_run
-              - ci/post.yaml
-            roles: &common_roles
-              - zuul: return-built-artifact
-            required-projects: &projects
-              - github/CESNET/libyang
-              - CzechLight/libyang-cpp
-              - github/sysrepo/sysrepo
-              - CzechLight/sysrepo-cpp
-              - github/CESNET/libnetconf2
-              - github/CESNET/Netopeer2
-              - name: github/onqtam/doctest
-                override-checkout: cesnet/2021-10-08
-              - github/docopt/docopt.cpp
-              - name: github/rollbear/trompeloeil
-                override-checkout: v41
-              - github/tplgy/cppcodec
-              - github/AmokHuginnsson/replxx
-              - github/Kistler-Group/sdbus-cpp
-            timeout: 1800
-
-        - f34-clang-asan-ubsan:
-            provides: CzechLight-deps-f34-clang-asan-ubsan
-            vars: *common_vars
-            required-projects: *projects
-            pre-run: *common_pre_run
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 1800
-
-        - f34-clang-tsan:
-            provides: CzechLight-deps-f34-clang-tsan
-            vars: *common_vars
-            required-projects: *projects
-            pre-run: *common_pre_run
-            post-run: *common_post_run
-            roles: *common_roles
-            timeout: 2700
+        # - deps-f34-gcc
+        - deps-f34-clang-asan-ubsan
+        # - deps-f34-clang-tsan
+        - netconf-cli-f34-clang-asan-ubsan:
+            required-projects:
+              - CzechLight/netconf-cli
+            dependencies:
+              - deps-f34-clang-asan-ubsan
+            voting: false
 
     promote:
       jobs:
