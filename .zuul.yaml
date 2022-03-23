@@ -49,6 +49,16 @@
             roles: *common_roles
             timeout: 2700
 
+        - netconf-cli-f34-clang-asan-ubsan:
+            parent: f34-clang-asan-ubsan
+            required-projects:
+              - CzechLight/netconf-cli
+            dependencies:
+              - f34-clang-asan-ubsan
+            requires:
+              - CzechLight-deps-f34-clang-asan-ubsan
+            voting: false
+
     promote:
       jobs:
         - promote-artifacts
