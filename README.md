@@ -1,16 +1,19 @@
 # Shared library dependencies for NETCONF-related software
 
 Please note that a `Verified: +1` vote only means that all these libraries managed to build.
-There's no cross-project gating right now.
+There's *some* cross-project checking, but it is currently not enforced.
+Since Zuul+Gerrit do not support "atomic cross-repo changes" and there will be occasional changes which require updates of multiple repositories, use caution.
 
 ## Updating software
 
 When uploading, make sure that all changes share the same topic in Gerrit (e.g., `git push ... -o topic=update-netconf`).
 
 1) Make a modification here in `CzechLight/dependencies`.
-This will be the change **A** ([example](https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/2693)).
+This will be the change **A**.
+A subset of build targets of "downstream procjets" will be rebuilt.
+Those which have failed require follow-up commits.
 
-2) Push commits to all "leaf" repositories (changes **B**, **C**, **D**, **E**, **F**):
+2) Push commits to all "leaf" repositories (changes **B**, **C**, **D**, **E**, **F**) which require modifications:
 
 - `CzechLight/cla-sysrepo`
 - `CzechLight/netconf-cli`
@@ -18,17 +21,12 @@ This will be the change **A** ([example](https://gerrit.cesnet.cz/c/CzechLight/d
 - `CzechLight/rousette`
 - `CzechLight/sysrepo-ietf-alarms`
 
-If no actual changes are needed, feel free to use `git commit --allow-empty`.
 Use these `Depends-on` footer tags:
 ```shell
 Depends-on: https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/${A}
 ```
 
-If you're feeling particularly lucky (are you, punk?), sometimes it might be safe to skip commits to repositories which are "obviously not affected" by the dependency update.
-If you do that, keep in mind that you're bypassing automation which was put in place for a good reason.
-If stuff breaks, you will have to keep all the pieces.
-
-3) Finally, update `CzechLight/br2-external` so that it includes all changes made above ([example](https://gerrit.cesnet.cz/c/CzechLight/br2-external/+/2698)).
+3) Finally, update `CzechLight/br2-external` so that it includes all changes made above.
 The following `Depends-on` are needed:
 ```shell
 Depends-on: https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/${A}
