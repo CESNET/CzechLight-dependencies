@@ -34,3 +34,6 @@
 [submodule "sysrepo-cpp"]
 	path = sysrepo-cpp
 	url = ../../CzechLight/sysrepo-cpp
+[submodule "libnetconf2-cpp"]
+	path = libnetconf2-cpp
+	url = ssh://kubernat@cesnet.cz@gerrit.cesnet.cz:29418/CzechLight/libnetconf2-cpp
