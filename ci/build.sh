@@ -127,6 +127,9 @@ do_test_dep_cmake sysrepo-cpp -j${CI_PARALLEL_JOBS}
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
 do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 
+emerge_dep libnetconf2-cpp
+do_test_dep_cmake libnetconf2-cpp -j${CI_PARALLEL_JOBS}
+
 # DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
 # waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
