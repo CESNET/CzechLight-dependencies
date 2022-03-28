@@ -19,6 +19,7 @@
       - github/sysrepo/sysrepo
       - CzechLight/sysrepo-cpp
       - github/CESNET/libnetconf2
+      - CzechLight/libnetconf2-cpp
       - github/CESNET/Netopeer2
       - name: github/onqtam/doctest
         override-checkout: cesnet/2021-10-08
