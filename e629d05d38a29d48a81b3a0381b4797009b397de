@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87597d9b_4da65073",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-06T10:43:09Z",
+      "side": 1,
+      "message": "https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/5643",
+      "revId": "e629d05d38a29d48a81b3a0381b4797009b397de",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
