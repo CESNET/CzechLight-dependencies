@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "270ad874_c8627c83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-04-22T07:11:07Z",
+      "side": 1,
+      "message": "Since the current version of the stack is broken under TSAN, please rebase this on top of https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/5685 (and leave your review on other patches on that topic, please)",
+      "revId": "63c141af515d3917b52e9ec93f29ececa3b29bcd",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
