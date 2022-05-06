@@ -25,7 +25,7 @@
         override-checkout: cesnet/2021-10-08
       - github/docopt/docopt.cpp
       - name: github/rollbear/trompeloeil
-        override-checkout: v41
+        override-checkout: v42
       - github/tplgy/cppcodec
       - github/AmokHuginnsson/replxx
       - github/Kistler-Group/sdbus-cpp
