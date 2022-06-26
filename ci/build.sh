@@ -133,7 +133,7 @@ do_test_dep_cmake libnetconf2-cpp -j${CI_PARALLEL_JOBS}
 # DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
 # waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
-# New Netopeer2 doesn't have tests
+TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake Netopeer2 -j${CI_PARALLEL_JOBS}
 
 emerge_dep docopt.cpp
 do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
