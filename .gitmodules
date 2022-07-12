@@ -37,3 +37,6 @@
 [submodule "libnetconf2-cpp"]
 	path = libnetconf2-cpp
 	url = ../../CzechLight/libnetconf2-cpp
+[submodule "sysrepo-ietf-alarms"]
+	path = sysrepo-ietf-alarms
+	url = ../../CzechLight/sysrepo-ietf-alarms

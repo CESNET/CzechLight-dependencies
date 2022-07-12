@@ -149,6 +149,9 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_DOC=OFF -DBUILD_CODE_GEN=ON" emerge_dep sdbus-cpp
 # tests perform some automatic downloads -> skip them
 
+emerge_dep sysrepo-ietf-alarms
+do_test_dep_cmake sysrepo-ietf-alarms -j${CI_PARALLEL_JOBS}
+
 # verify whether sysrepo still works
 sysrepoctl --list
 

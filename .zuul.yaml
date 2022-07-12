@@ -29,6 +29,7 @@
       - github/tplgy/cppcodec
       - github/AmokHuginnsson/replxx
       - github/Kistler-Group/sdbus-cpp
+      - CzechLight/sysrepo-ietf-alarms
     timeout: 1800
 
 - job:
