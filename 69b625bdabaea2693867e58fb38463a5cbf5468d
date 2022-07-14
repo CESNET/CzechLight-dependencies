@@ -16,6 +16,23 @@
       "message": "yay, it works: https://object-store.cloud.muni.cz/swift/v1/ci-logs-public/75/5875/2/check/deps-f34-clang-asan-ubsan/604a44e/",
       "revId": "69b625bdabaea2693867e58fb38463a5cbf5468d",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f029659c_0c927112",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-07-14T21:50:30Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "69b625bdabaea2693867e58fb38463a5cbf5468d",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
