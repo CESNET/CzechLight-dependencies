@@ -133,7 +133,12 @@ do_test_dep_cmake libnetconf2-cpp -j${CI_PARALLEL_JOBS}
 # DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
 # waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
+set_save=$-
+set -E
+trap "echo Netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in $(pwd)/Netopeer2/tests/repositories/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
 TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake Netopeer2 -j${CI_PARALLEL_JOBS}
+trap - ERR
+set +E -$set_save
 
 emerge_dep docopt.cpp
 do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
