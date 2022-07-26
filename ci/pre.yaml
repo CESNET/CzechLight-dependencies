@@ -12,6 +12,12 @@
         state: present
       become: true
 
+    - name: install PAM
+      package:
+        name: pam-devel
+        state: present
+      become: true
+
     - name: disable SSSD
       package:
         name: sssd-client
