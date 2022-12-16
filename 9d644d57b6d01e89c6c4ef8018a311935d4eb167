@@ -50,6 +50,23 @@
       "message": "recheck",
       "revId": "9d644d57b6d01e89c6c4ef8018a311935d4eb167",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f9a1863_374f4ff5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-12-16T10:56:55Z",
+      "side": 1,
+      "message": "`czechlight-clearfog` fails due to missing libpam, which is expected for this patch (that\u0027s fixed via https://gerrit.cesnet.cz/c/CzechLight/br2-external/+/5883 later in the series)",
+      "revId": "9d644d57b6d01e89c6c4ef8018a311935d4eb167",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
