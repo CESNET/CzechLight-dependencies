@@ -37,16 +37,16 @@ if [[ $ZUUL_JOB_NAME =~ .*-gcc$ ]]; then
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
-    export CFLAGS="-fsanitize=address,undefined ${CFLAGS}"
-    export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
+    export CFLAGS="-fsanitize=address,undefined -Wp,-U_FORTIFY_SOURCE ${CFLAGS}"
+    export CXXFLAGS="-fsanitize=address,undefined -Wp,-U_FORTIFY_SOURCE ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
     export ASAN_OPTIONS=intercept_tls_get_addr=0,log_to_syslog=true,handle_abort=2,strip_path_prefix=${ZUUL_SRC_COMMON_PREFIX}
     export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
-    export CFLAGS="-fsanitize=thread ${CFLAGS}"
-    export CXXFLAGS="-fsanitize=thread ${CXXFLAGS}"
+    export CFLAGS="-fsanitize=thread -Wp,-U_FORTIFY_SOURCE ${CFLAGS}"
+    export CXXFLAGS="-fsanitize=thread -Wp,-U_FORTIFY_SOURCE ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=thread ${LDFLAGS}"
 fi
 
