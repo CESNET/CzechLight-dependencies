@@ -6,6 +6,8 @@ shopt -s failglob
 ZUUL_JOB_NAME=$(jq < ~/zuul-env.json -r '.job')
 ZUUL_PROJECT_SRC_DIR=$HOME/$(jq < ~/zuul-env.json -r '.project.src_dir')
 ZUUL_PROJECT_SHORT_NAME=$(jq < ~/zuul-env.json -r '.project.short_name')
+ZUUL_PROJECT_NAME=$(jq < ~/zuul-env.json -r '.project.name')
+ZUUL_SRC_COMMON_PREFIX=${ZUUL_PROJECT_SRC_DIR:0:-${#ZUUL_PROJECT_NAME}}
 
 # We're reusing our artifacts, so we absolutely need a stable destdir.
 PREFIX=~/target
@@ -38,7 +40,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export CFLAGS="-fsanitize=address,undefined ${CFLAGS}"
     export CXXFLAGS="-fsanitize=address,undefined ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
-    export ASAN_OPTIONS=intercept_tls_get_addr=0,log_to_syslog=true,handle_abort=2
+    export ASAN_OPTIONS=intercept_tls_get_addr=0,log_to_syslog=true,handle_abort=2,strip_path_prefix=${ZUUL_SRC_COMMON_PREFIX}
     export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 fi
 
