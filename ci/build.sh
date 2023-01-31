@@ -17,8 +17,8 @@ mkdir ${RUN_TMP}
 
 CI_PARALLEL_JOBS=$(awk -vcpu=$(getconf _NPROCESSORS_ONLN) 'BEGIN{printf "%.0f", cpu*1.3+1}')
 CMAKE_OPTIONS="-DCMAKE_INSTALL_RPATH:INTERNAL=${PREFIX}/lib64 -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:INTERNAL=ON"
-CFLAGS="-O2 -g"
-CXXFLAGS="-O2 -g"
+CFLAGS="-O2 -g -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer"
+CXXFLAGS="-O2 -g -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer"
 LDFLAGS=""
 
 EXTRA_OPTIONS_SYSREPO=""
