@@ -16,6 +16,24 @@
       "message": "nah, only on new Fedora of course",
       "revId": "813aa508f85df76a44f389c6c63262d4b3fd065a",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30c2b555_c45bb103",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-02-01T23:06:59Z",
+      "side": 1,
+      "message": "OK, not really, it\u0027s on F34 already, but I got confused because it\u0027s an EOLed version, and therefore the package won\u0027t appear on a public website of course",
+      "parentUuid": "471d2148_cf019e8b",
+      "revId": "813aa508f85df76a44f389c6c63262d4b3fd065a",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
