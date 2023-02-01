@@ -142,9 +142,6 @@ TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cma
 trap - ERR
 set +E -$set_save
 
-emerge_dep docopt.cpp
-do_test_dep_cmake docopt.cpp -j${CI_PARALLEL_JOBS}
-
 # examples are broken on clang+ubsan because of their STL override
 # https://github.com/AmokHuginnsson/replxx/issues/76
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BUILD_EXAMPLES=OFF" emerge_dep replxx
