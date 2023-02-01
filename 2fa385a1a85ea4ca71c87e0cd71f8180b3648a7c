@@ -33,6 +33,24 @@
       "message": "Do we want this for every build or *san only?",
       "revId": "2fa385a1a85ea4ca71c87e0cd71f8180b3648a7c",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec06027_ab3d8293",
+        "filename": "ci/build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-02-01T15:16:53Z",
+      "side": 1,
+      "message": "I prefer simplicity here, the performance cost is allegedly like 1-2%",
+      "parentUuid": "0b5cc71c_5fa5203b",
+      "revId": "2fa385a1a85ea4ca71c87e0cd71f8180b3648a7c",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
