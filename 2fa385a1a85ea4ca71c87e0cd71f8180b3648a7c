@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76565581_ff939532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2023-02-01T14:36:52Z",
+      "side": 1,
+      "message": "o ",
+      "revId": "2fa385a1a85ea4ca71c87e0cd71f8180b3648a7c",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b5cc71c_5fa5203b",
+        "filename": "ci/build.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2023-02-01T14:36:52Z",
+      "side": 1,
+      "message": "Do we want this for every build or *san only?",
+      "revId": "2fa385a1a85ea4ca71c87e0cd71f8180b3648a7c",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
