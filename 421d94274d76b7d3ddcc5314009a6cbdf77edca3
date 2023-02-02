@@ -1,0 +1,8 @@
+Verified+1: Zuul CI <cesnet-zuul+public@gerrit.cesnet.cz>
+Code-Review-1: Tomáš Pecka <Tomas.Pecka@cesnet.cz>
+Code-Review+2: Jan Kundrát <jan.kundrat@cesnet.cz>
+Submitted-by: Jan Kundrát <jan.kundrat@cesnet.cz>
+Submitted-at: Thu, 02 Feb 2023 10:34:05 +0100
+Reviewed-on: https://gerrit.cesnet.cz/c/CzechLight/dependencies/+/5990
+Project: CzechLight/dependencies
+Branch: refs/heads/master
