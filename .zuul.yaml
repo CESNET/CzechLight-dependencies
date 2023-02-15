@@ -25,7 +25,6 @@
         override-checkout: cesnet/2021-10-08
       - name: github/rollbear/trompeloeil
         override-checkout: v42
-      - github/tplgy/cppcodec
       - github/AmokHuginnsson/replxx
       - github/Kistler-Group/sdbus-cpp
     timeout: 1800

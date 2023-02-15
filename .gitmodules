@@ -19,9 +19,6 @@
 [submodule "doctest"]
 	path = doctest
 	url = ../../github/onqtam/doctest
-[submodule "cppcodec"]
-	path = cppcodec
-	url = ../../github/tplgy/cppcodec
 [submodule "sdbus-cpp"]
 	path = sdbus-cpp
 	url = ../../github/Kistler-Group/sdbus-cpp
