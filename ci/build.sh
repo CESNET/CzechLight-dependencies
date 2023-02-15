@@ -147,9 +147,6 @@ set +E -$set_save
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_SHARED_LIBS=ON -DREPLXX_BUILD_EXAMPLES=OFF" emerge_dep replxx
 do_test_dep_cmake replxx -j${CI_PARALLEL_JOBS}
 
-# testing requires Catch, and we no longer carry that one
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_TESTING=BOOL:OFF" emerge_dep cppcodec
-
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBUILD_DOC=OFF -DBUILD_CODE_GEN=ON" emerge_dep sdbus-cpp
 # tests perform some automatic downloads -> skip them
 
