@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "024b2048_f9bc25f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-02-16T17:01:33Z",
+      "side": 1,
+      "message": "FYI, this one actually has to go and the dependency must be set up the other way round, otherwise building br2-external fails because it cannot check out all the expected submodules.",
+      "revId": "bf72714f9829a3214d655dd2210e199a4624c25b",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
