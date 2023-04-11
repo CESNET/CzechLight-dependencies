@@ -65,6 +65,7 @@
             voting: false
         - velia-f34-clang-asan-ubsan:
             required-projects:
+              - CzechLight/sysrepo-ietf-alarms
               - CzechLight/velia
             dependencies:
               - deps-f34-clang-asan-ubsan
