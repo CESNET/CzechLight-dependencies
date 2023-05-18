@@ -28,6 +28,9 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CC=clang
     export CXX=clang++
     export LD=clang
+    # https://github.com/doctest/doctest/issues/766
+    # https://github.com/doctest/doctest/issues/774
+    export CXXFLAGS="${CXXFLAGS} -Wno-unsafe-buffer-usage"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-gcc$ ]]; then
@@ -52,6 +55,14 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     # Our TSAN does not have interceptors for a variety of "less common" functions such as pthread_mutex_clocklock.
     # Disable all functions which are optional in sysrepo/libnetconf2/Netopeer2.
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHAVE_PTHREAD_MUTEX_TIMEDLOCK=OFF -DHAVE_PTHREAD_MUTEX_CLOCKLOCK=OFF -DHAVE_PTHREAD_RWLOCK_CLOCKRDLOCK=OFF -DHAVE_PTHREAD_RWLOCK_CLOCKWRLOCK=OFF -DHAVE_PTHREAD_COND_CLOCKWAIT=OFF"
+
+    # TSAN doesn't play nicely with SIGEV_THREAD:
+    #
+    # - https://github.com/CESNET/netopeer2/pull/1420
+    # - https://github.com/google/sanitizers/issues/1612
+    #
+    # ... so we disable those Netopeer2 tests which exercise this feature.
+    EXTRA_OPTIONS_NETOPEER2="${EXTRA_OPTIONS_NETOPEER2} -DTSAN_SKIP_KNOWN_BROKEN_TESTS=ON"
 fi
 
 BUILD_DIR=~/build
