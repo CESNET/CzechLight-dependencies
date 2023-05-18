@@ -28,6 +28,9 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
     export CC=clang
     export CXX=clang++
     export LD=clang
+    # https://github.com/doctest/doctest/issues/766
+    # https://github.com/doctest/doctest/issues/774
+    export CXXFLAGS="${CXXFLAGS} -Wno-unsafe-buffer-usage"
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-gcc$ ]]; then
