@@ -16,6 +16,23 @@
       "message": "this fails because of https://lore.kernel.org/lkml/xmqq4jw1uku5.fsf@gitster.g/ , the fix will likely require a new VM image with a flipped default config value",
       "revId": "2905b08d39c71d257d9858f4e7093dc2201d416e",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e36f7b2_b9ff731f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-05-18T10:41:45Z",
+      "side": 1,
+      "message": "recheck with a new VM image",
+      "revId": "2905b08d39c71d257d9858f4e7093dc2201d416e",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
