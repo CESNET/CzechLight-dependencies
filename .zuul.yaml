@@ -1,9 +1,9 @@
 - job:
-    name: deps-f34-gcc
-    parent: f34-gcc
+    name: deps-f38-gcc
+    parent: f38-gcc
     pre-run: &common_pre_run
       - ci/pre.yaml
-    provides: CzechLight-deps-f34-gcc
+    provides: CzechLight-deps-f38-gcc
     vars: &common_vars
       prepare_git_submodules: true
       artifacts:
@@ -22,17 +22,17 @@
       - CzechLight/libnetconf2-cpp
       - github/CESNET/Netopeer2
       - name: github/onqtam/doctest
-        override-checkout: cesnet/2021-10-08
+        override-checkout: v2.4.11
       - name: github/rollbear/trompeloeil
-        override-checkout: v42
+        override-checkout: v44
       - github/AmokHuginnsson/replxx
       - github/Kistler-Group/sdbus-cpp
     timeout: 1800
 
 - job:
-    name: deps-f34-clang-asan-ubsan
-    parent: f34-clang-asan-ubsan
-    provides: CzechLight-deps-f34-clang-asan-ubsan
+    name: deps-f38-clang-asan-ubsan
+    parent: f38-clang-asan-ubsan
+    provides: CzechLight-deps-f38-clang-asan-ubsan
     vars: *common_vars
     required-projects: *projects
     pre-run: *common_pre_run
@@ -41,9 +41,9 @@
     timeout: 1800
 
 - job:
-    name: deps-f34-clang-tsan
-    parent: f34-clang-tsan
-    provides: CzechLight-deps-f34-clang-tsan
+    name: deps-f38-clang-tsan
+    parent: f38-clang-tsan
+    provides: CzechLight-deps-f38-clang-tsan
     vars: *common_vars
     required-projects: *projects
     pre-run: *common_pre_run
@@ -54,40 +54,40 @@
 - project:
     check:
       jobs:
-        - deps-f34-gcc
-        - deps-f34-clang-asan-ubsan
-        - deps-f34-clang-tsan
-        - netconf-cli-f34-clang-asan-ubsan:
-            required-projects:
-              - CzechLight/netconf-cli
-            dependencies:
-              - deps-f34-clang-asan-ubsan
-            voting: false
-        - velia-f34-clang-asan-ubsan:
-            required-projects:
-              - CzechLight/sysrepo-ietf-alarms
-              - CzechLight/velia
-            dependencies:
-              - deps-f34-clang-asan-ubsan
-            voting: false
-        - rousette-f34-clang-asan-ubsan:
-            required-projects:
-              - CzechLight/rousette
-            dependencies:
-              - deps-f34-clang-asan-ubsan
-            voting: false
-        - sysrepo-ietf-alarms-f34-clang-asan-ubsan:
-            required-projects:
-              - CzechLight/sysrepo-ietf-alarms
-            dependencies:
-              - deps-f34-clang-asan-ubsan
-            voting: false
-        - cla-sysrepo-f34-clang-asan-ubsan:
-            required-projects:
-              - CzechLight/cla-sysrepo
-            dependencies:
-              - deps-f34-clang-asan-ubsan
-            voting: false
+        - deps-f38-gcc
+        - deps-f38-clang-asan-ubsan
+        - deps-f38-clang-tsan
+        # - netconf-cli-f38-clang-asan-ubsan:
+        #     required-projects:
+        #       - CzechLight/netconf-cli
+        #     dependencies:
+        #       - deps-f38-clang-asan-ubsan
+        #     voting: false
+        # - velia-f38-clang-asan-ubsan:
+        #     required-projects:
+        #       - CzechLight/sysrepo-ietf-alarms
+        #       - CzechLight/velia
+        #     dependencies:
+        #       - deps-f38-clang-asan-ubsan
+        #     voting: false
+        # - rousette-f38-clang-asan-ubsan:
+        #     required-projects:
+        #       - CzechLight/rousette
+        #     dependencies:
+        #       - deps-f38-clang-asan-ubsan
+        #     voting: false
+        # - sysrepo-ietf-alarms-f38-clang-asan-ubsan:
+        #     required-projects:
+        #       - CzechLight/sysrepo-ietf-alarms
+        #     dependencies:
+        #       - deps-f38-clang-asan-ubsan
+        #     voting: false
+        # - cla-sysrepo-f38-clang-asan-ubsan:
+        #     required-projects:
+        #       - CzechLight/cla-sysrepo
+        #     dependencies:
+        #       - deps-f38-clang-asan-ubsan
+        #     voting: false
         - czechlight-clearfog:
             required-projects:
               - CzechLight/br2-external
