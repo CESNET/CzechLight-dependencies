@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20f38b5e_db0218be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2023-06-06T08:53:12Z",
+      "side": 1,
+      "message": "nit: typo `sysrepo` but so many changes depend on that so probably let\u0027s not fix",
+      "range": {
+        "startLine": 12,
+        "startChar": 44,
+        "endLine": 12,
+        "endChar": 51
+      },
+      "revId": "71b0d5ad1085ac9b3b940eb181b2055d6a5345c2",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
