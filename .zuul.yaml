@@ -55,37 +55,37 @@
         - deps-f38-gcc
         - deps-f38-clang-asan-ubsan
         - deps-f38-clang-tsan
-        # - netconf-cli-f38-clang-asan-ubsan:
-        #     required-projects:
-        #       - CzechLight/netconf-cli
-        #     dependencies:
-        #       - deps-f38-clang-asan-ubsan
-        #     voting: false
-        # - velia-f38-clang-asan-ubsan:
-        #     required-projects:
-        #       - CzechLight/sysrepo-ietf-alarms
-        #       - CzechLight/velia
-        #     dependencies:
-        #       - deps-f38-clang-asan-ubsan
-        #     voting: false
-        # - rousette-f38-clang-asan-ubsan:
-        #     required-projects:
-        #       - CzechLight/rousette
-        #     dependencies:
-        #       - deps-f38-clang-asan-ubsan
-        #     voting: false
-        # - sysrepo-ietf-alarms-f38-clang-asan-ubsan:
-        #     required-projects:
-        #       - CzechLight/sysrepo-ietf-alarms
-        #     dependencies:
-        #       - deps-f38-clang-asan-ubsan
-        #     voting: false
-        # - cla-sysrepo-f38-clang-asan-ubsan:
-        #     required-projects:
-        #       - CzechLight/cla-sysrepo
-        #     dependencies:
-        #       - deps-f38-clang-asan-ubsan
-        #     voting: false
+         - netconf-cli-f38-clang-asan-ubsan:
+             required-projects:
+               - CzechLight/netconf-cli
+             dependencies:
+               - deps-f38-clang-asan-ubsan
+             voting: false
+         - velia-f38-clang-asan-ubsan:
+             required-projects:
+               - CzechLight/sysrepo-ietf-alarms
+               - CzechLight/velia
+             dependencies:
+               - deps-f38-clang-asan-ubsan
+             voting: false
+         - rousette-f38-clang-asan-ubsan:
+             required-projects:
+               - CzechLight/rousette
+             dependencies:
+               - deps-f38-clang-asan-ubsan
+             voting: false
+         - sysrepo-ietf-alarms-f38-clang-asan-ubsan:
+             required-projects:
+               - CzechLight/sysrepo-ietf-alarms
+             dependencies:
+               - deps-f38-clang-asan-ubsan
+             voting: false
+         - cla-sysrepo-f38-clang-asan-ubsan:
+             required-projects:
+               - CzechLight/cla-sysrepo
+             dependencies:
+               - deps-f38-clang-asan-ubsan
+             voting: false
         - czechlight-clearfog:
             required-projects:
               - CzechLight/br2-external
