@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "976db533_3a49e678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-07-13T11:41:29Z",
+      "side": 1,
+      "message": "there\u0027s some change in sysrepo which hits velia, MV is currently debugging that (thanks)",
+      "revId": "7821f0272d6e66d933ec398da64d0287291d9127",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
