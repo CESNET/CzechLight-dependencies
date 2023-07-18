@@ -1,1 +1,2 @@
 race:tzset_internal
+race:boost::asio::detail::reactive_socket_service_base::is_open
