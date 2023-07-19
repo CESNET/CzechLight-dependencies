@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5272908e_0cfcb8b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2023-07-19T13:48:05Z",
+      "side": 1,
+      "message": "Let\u0027s wait until we sync the sysrepo commit. Then sync all project.",
+      "revId": "0de804669525e4bd5611596f3a04f5325c35d7da",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
