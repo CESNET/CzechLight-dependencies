@@ -16,6 +16,23 @@
       "message": "The Depends-on footer was missing. It is not needed now that that patch has been merged.",
       "revId": "c97b18ac4c200ad43c358e1566097da527c623a2",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb0171ff_5fae91ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-01T21:30:16Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "c97b18ac4c200ad43c358e1566097da527c623a2",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
