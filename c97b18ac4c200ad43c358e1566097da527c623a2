@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07389aab_4a60a49a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-08-01T21:28:55Z",
+      "side": 1,
+      "message": "The Depends-on footer was missing. It is not needed now that that patch has been merged.",
+      "revId": "c97b18ac4c200ad43c358e1566097da527c623a2",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
