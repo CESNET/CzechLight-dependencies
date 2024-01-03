@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b32ce37_01e8a9f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-03T09:55:54Z",
+      "side": 1,
+      "message": "the TSAN breakage looks legit, https://github.com/sysrepo/sysrepo/issues/3221",
+      "revId": "d4822a4ee7eaeae1ec37a4451929f857639b649a",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
