@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb72a44a_20f931f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-01-11T10:14:32Z",
+      "side": 1,
+      "message": "recheck due to a suspected TSAN false positive in sysrepo",
+      "revId": "e41a29cb142fe6118bbf4ba78ee731c2dee29053",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
