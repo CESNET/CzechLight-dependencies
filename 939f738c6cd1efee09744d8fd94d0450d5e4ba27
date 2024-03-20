@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd7b613e_238141c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-03-20T12:27:49Z",
+      "side": 1,
+      "message": "cla-sysrepo gets fixed via https://gerrit.cesnet.cz/c/CzechLight/cla-sysrepo/+/6950",
+      "revId": "939f738c6cd1efee09744d8fd94d0450d5e4ba27",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
