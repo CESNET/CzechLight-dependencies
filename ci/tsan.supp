@@ -1,1 +1,5 @@
 race:tzset_internal
+
+# I202914d2d9add19281a0c44383ef0c16784ba66f in CzechLight/dependencies
+# and https://github.com/sysrepo/sysrepo/issues/2595
+race:ly_in_read
