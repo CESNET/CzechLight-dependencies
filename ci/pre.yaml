@@ -18,6 +18,12 @@
         state: present
       become: true
 
+    - name: install curl
+      package:
+        name: libcurl-devel
+        state: present
+      become: true
+
     - name: disable SSSD
       package:
         name: sssd-client
