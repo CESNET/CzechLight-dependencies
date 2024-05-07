@@ -89,7 +89,7 @@ build_dep_autoconf() {
 do_test_dep_cmake() {
     pushd ${BUILD_DIR}/$1
     shift
-    ctest --output-on-failure "$@"
+    ctest --timeout 180 --output-on-failure "$@"
     popd
 }
 
