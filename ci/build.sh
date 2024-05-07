@@ -119,7 +119,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_PYTHON_BINDINGS=OFF"
 
 ARTIFACT=$(git --git-dir ${ZUUL_PROJECT_SRC_DIR}/.git rev-parse HEAD).tar.zst
 
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DGEN_LANGUAGE_BINDINGS=ON -DGEN_PYTHON_BINDINGS=OFF -DGEN_JAVA_BINDINGS=OFF -DENABLE_CACHE=ON" emerge_dep libyang
+emerge_dep libyang
 do_test_dep_cmake libyang -j${CI_PARALLEL_JOBS}
 
 emerge_dep doctest
@@ -138,15 +138,13 @@ CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
 emerge_dep sysrepo-cpp
 do_test_dep_cmake sysrepo-cpp -j${CI_PARALLEL_JOBS}
 
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DIGNORE_LIBSSH_VERSION=ON" emerge_dep libnetconf2
+emerge_dep libnetconf2
 do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 
 emerge_dep libnetconf2-cpp
 do_test_dep_cmake libnetconf2-cpp -j${CI_PARALLEL_JOBS}
 
-# DATA_CHANGE_WAIT is needed so that sysrepo/Netopeer2 waits for "DONE" callbacks to be completed. Otherwise it only
-# waits for the "CHANGE" callbacks (those that can intercept the changes and also perform validation).
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DDATA_CHANGE_WAIT=ON -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
 set_save=$-
 set -E
 trap "echo Netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in ${BUILD_DIR}/Netopeer2/tests/repositories/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
