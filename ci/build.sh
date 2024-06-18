@@ -43,7 +43,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-asan-ubsan ]]; then
     export CFLAGS="-fsanitize=address,undefined -Wp,-U_FORTIFY_SOURCE ${CFLAGS}"
     export CXXFLAGS="-fsanitize=address,undefined -Wp,-U_FORTIFY_SOURCE ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=address,undefined ${LDFLAGS}"
-    export ASAN_OPTIONS=intercept_tls_get_addr=0,log_to_syslog=true,handle_abort=2,strip_path_prefix=${ZUUL_SRC_COMMON_PREFIX}
+    export ASAN_OPTIONS=detect_odr_violation=1,intercept_tls_get_addr=0,log_to_syslog=true,handle_abort=2,strip_path_prefix=${ZUUL_SRC_COMMON_PREFIX}
     export UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1
 fi
 
