@@ -51,6 +51,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     export CFLAGS="-fsanitize=thread -Wp,-U_FORTIFY_SOURCE ${CFLAGS}"
     export CXXFLAGS="-fsanitize=thread -Wp,-U_FORTIFY_SOURCE ${CXXFLAGS}"
     export LDFLAGS="-fsanitize=thread ${LDFLAGS}"
+    export TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp"
 
     # Our TSAN does not have interceptors for a variety of "less common" functions such as pthread_mutex_clocklock.
     # Disable all functions which are optional in sysrepo/libnetconf2/Netopeer2.
@@ -130,7 +131,7 @@ do_test_dep_cmake libyang-cpp -j${CI_PARALLEL_JOBS}
 
 # sysrepo needs to use a persistent repo location
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DREPO_PATH=${PREFIX}/etc-sysrepo ${EXTRA_OPTIONS_SYSREPO}" emerge_dep sysrepo
-TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS}
+do_test_dep_cmake sysrepo -j${CI_PARALLEL_JOBS}
 
 # Trompeloeil is a magic snowflake because it attempts to download and build Catch and kcov when building in a debug mode...
 CMAKE_BUILD_TYPE=Release emerge_dep trompeloeil
@@ -148,7 +149,7 @@ CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETO
 set_save=$-
 set -E
 trap "echo Netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in ${BUILD_DIR}/Netopeer2/tests/repositories/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
-TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp" do_test_dep_cmake Netopeer2 -j${CI_PARALLEL_JOBS}
+do_test_dep_cmake Netopeer2 -j${CI_PARALLEL_JOBS}
 trap - ERR
 set +E -$set_save
 
