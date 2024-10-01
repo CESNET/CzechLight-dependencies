@@ -7,8 +7,8 @@
     vars: &common_vars
       prepare_git_submodules: true
       artifacts:
-        name: tarball
-        glob: '*.tar.zst'
+        - name: tarball
+          glob: '*.tar.zst'
     post-run: &common_post_run
       - ci/post.yaml
     roles: &common_roles
