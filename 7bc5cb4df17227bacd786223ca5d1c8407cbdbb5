@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44e2754_b077132d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2024-10-02T18:33:04Z",
+      "side": 1,
+      "message": "We usually say NETCONF stack :-) but whatever :)",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "7bc5cb4df17227bacd786223ca5d1c8407cbdbb5",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41c13e6a_9ad70917",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2024-10-02T18:33:04Z",
+      "side": 1,
+      "message": "Thanks, I was going to do it when pushing the new velia update, but you were faster",
+      "revId": "7bc5cb4df17227bacd786223ca5d1c8407cbdbb5",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
