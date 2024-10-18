@@ -148,7 +148,7 @@ do_test_dep_cmake libnetconf2-cpp -j${CI_PARALLEL_JOBS}
 CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
 set_save=$-
 set -E
-trap "echo Netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in ${BUILD_DIR}/Netopeer2/tests/repositories/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
+trap "echo Netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in ${BUILD_DIR}/Netopeer2/repos/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
 do_test_dep_cmake Netopeer2 -j${CI_PARALLEL_JOBS}
 trap - ERR
 set +E -$set_save
