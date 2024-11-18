@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79fb3479_d022add2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2024-11-18T16:42:06Z",
+      "side": 1,
+      "message": "recheck\n\n...because the netconf-cli test is passing just fine for me locally",
+      "revId": "81cea1e55695644aa6d495fa54546444962517e0",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
