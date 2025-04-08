@@ -4,9 +4,9 @@
 [submodule "sysrepo"]
 	path = sysrepo
 	url = ../../github/sysrepo/sysrepo
-[submodule "Netopeer2"]
-	path = Netopeer2
-	url = ../../github/CESNET/Netopeer2
+[submodule "netopeer2"]
+	path = netopeer2
+	url = ../../github/CESNET/netopeer2
 [submodule "libnetconf2"]
 	path = libnetconf2
 	url = ../../github/CESNET/libnetconf2

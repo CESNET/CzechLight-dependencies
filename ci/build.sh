@@ -34,7 +34,7 @@ if [[ $ZUUL_JOB_NAME =~ .*-clang.* ]]; then
 fi
 
 if [[ $ZUUL_JOB_NAME =~ .*-gcc$ ]]; then
-    # This changes behavior of Netopeer2 (and sysrepo) in a rather subtle way. Try to cover both via our build matrix.
+    # This changes behavior of netopeer2 (and sysrepo) in a rather subtle way. Try to cover both via our build matrix.
     EXTRA_OPTIONS_SYSREPO="-DSYSREPO_SUPERUSER_UID=${UID}"
     EXTRA_OPTIONS_NETOPEER2="-DNACM_RECOVERY_UID=${UID}"
 fi
@@ -54,10 +54,10 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     export TSAN_OPTIONS="suppressions=${ZUUL_PROJECT_SRC_DIR}/ci/tsan.supp"
 
     # Our TSAN does not have interceptors for a variety of "less common" functions such as pthread_mutex_clocklock.
-    # Disable all functions which are optional in sysrepo/libnetconf2/Netopeer2.
+    # Disable all functions which are optional in sysrepo/libnetconf2/netopeer2.
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHAVE_PTHREAD_MUTEX_TIMEDLOCK=OFF -DHAVE_PTHREAD_MUTEX_CLOCKLOCK=OFF -DHAVE_PTHREAD_RWLOCK_CLOCKRDLOCK=OFF -DHAVE_PTHREAD_RWLOCK_CLOCKWRLOCK=OFF -DHAVE_PTHREAD_COND_CLOCKWAIT=OFF"
 
-    # TSAN doesn't play nicely with SIGEV_THREAD, but Netopeer2 auto-disables these based on CFLAGS
+    # TSAN doesn't play nicely with SIGEV_THREAD, but netopeer2 auto-disables these based on CFLAGS
     #
     # - https://github.com/CESNET/netopeer2/pull/1420
     # - https://github.com/google/sanitizers/issues/1612
@@ -145,11 +145,11 @@ do_test_dep_cmake libnetconf2 -j${CI_PARALLEL_JOBS}
 emerge_dep libnetconf2-cpp
 do_test_dep_cmake libnetconf2-cpp -j${CI_PARALLEL_JOBS}
 
-CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep Netopeer2
+CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPIDFILE_PREFIX=${RUN_TMP} ${EXTRA_OPTIONS_NETOPEER2}" emerge_dep netopeer2
 set_save=$-
 set -E
-trap "echo Netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in ${BUILD_DIR}/Netopeer2/repos/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
-do_test_dep_cmake Netopeer2 -j${CI_PARALLEL_JOBS}
+trap "echo netopeer2 tests failed, copying logs; for ONE_NETOPEER_TEST in ${BUILD_DIR}/netopeer2/repos/*; do cp \${ONE_NETOPEER_TEST}/np2.log ~/zuul-output/logs/np2-\$(basename \${ONE_NETOPEER_TEST}).log; done" ERR
+do_test_dep_cmake netopeer2 -j${CI_PARALLEL_JOBS}
 trap - ERR
 set +E -$set_save
 

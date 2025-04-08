@@ -20,8 +20,8 @@
       - CzechLight/sysrepo-cpp
       - github/CESNET/libnetconf2
       - CzechLight/libnetconf2-cpp
-      - github/CESNET/Netopeer2
-      - github/onqtam/doctest
+      - github/CESNET/netopeer2
+      - github/doctest/doctest
       - github/rollbear/trompeloeil
       - github/AmokHuginnsson/replxx
       - github/Kistler-Group/sdbus-cpp
