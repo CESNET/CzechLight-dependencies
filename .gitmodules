@@ -4,9 +4,9 @@
 [submodule "sysrepo"]
 	path = sysrepo
 	url = ../../github/sysrepo/sysrepo
-[submodule "Netopeer2"]
-	path = Netopeer2
-	url = ../../github/CESNET/Netopeer2
+[submodule "netopeer2"]
+	path = netopeer2
+	url = ../../github/CESNET/netopeer2
 [submodule "libnetconf2"]
 	path = libnetconf2
 	url = ../../github/CESNET/libnetconf2
@@ -18,7 +18,7 @@
 	url = ../../github/AmokHuginnsson/replxx
 [submodule "doctest"]
 	path = doctest
-	url = ../../github/onqtam/doctest
+	url = ../../github/doctest/doctest
 [submodule "sdbus-cpp"]
 	path = sdbus-cpp
 	url = ../../github/Kistler-Group/sdbus-cpp
