@@ -18,7 +18,7 @@
 	url = ../../github/AmokHuginnsson/replxx
 [submodule "doctest"]
 	path = doctest
-	url = ../../github/onqtam/doctest
+	url = ../../github/doctest/doctest
 [submodule "sdbus-cpp"]
 	path = sdbus-cpp
 	url = ../../github/Kistler-Group/sdbus-cpp
