@@ -16,6 +16,24 @@
       "message": "@Tomas.Pecka@cesnet.cz, you might have a new enough compiler for `std::format` and `std::thread::id`. Does it print nice thread IDs on your system if you let the test case throw?",
       "revId": "d3ffbe19488889f7015dc085bf4f169c039466fc",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa3aac04_a1e4c300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2025-05-28T09:43:05Z",
+      "side": 1,
+      "message": "In PS5 it works and the recent C++23 changes are compilable with both gcc 15 and clang 19.",
+      "parentUuid": "d2197779_5e717dd3",
+      "revId": "d3ffbe19488889f7015dc085bf4f169c039466fc",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
