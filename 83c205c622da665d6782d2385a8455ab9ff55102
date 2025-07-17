@@ -16,6 +16,23 @@
       "message": "recheck to see if it\u0027s \"just a threading fluke\"",
       "revId": "83c205c622da665d6782d2385a8455ab9ff55102",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca31e29_6d0d7a63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2025-07-17T16:21:41Z",
+      "side": 1,
+      "message": "https://github.com/sysrepo/sysrepo/issues/3648",
+      "revId": "83c205c622da665d6782d2385a8455ab9ff55102",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
