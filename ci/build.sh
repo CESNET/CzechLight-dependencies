@@ -57,6 +57,10 @@ if [[ $ZUUL_JOB_NAME =~ .*-tsan ]]; then
     # Disable all functions which are optional in sysrepo/libnetconf2/netopeer2.
     CMAKE_OPTIONS="${CMAKE_OPTIONS} -DHAVE_PTHREAD_MUTEX_TIMEDLOCK=OFF -DHAVE_PTHREAD_MUTEX_CLOCKLOCK=OFF -DHAVE_PTHREAD_RWLOCK_CLOCKRDLOCK=OFF -DHAVE_PTHREAD_RWLOCK_CLOCKWRLOCK=OFF -DHAVE_PTHREAD_COND_CLOCKWAIT=OFF"
 
+    # sysrepo's "printed context" is currently broken on TSAN ("Failed to map the printed context (Operation not permitted).").
+    # Even if it wasn't broken, I want at least one build in the matrix with this (mis)feature disabled.
+    CMAKE_OPTIONS="${CMAKE_OPTIONS} -DPRINTED_CONTEXT_ADDRESS=0"
+
     # TSAN doesn't play nicely with SIGEV_THREAD, but netopeer2 auto-disables these based on CFLAGS
     #
     # - https://github.com/CESNET/netopeer2/pull/1420
