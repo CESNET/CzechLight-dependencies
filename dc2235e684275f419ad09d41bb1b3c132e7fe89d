@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "752b3b51_c8b05d28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2025-11-06T10:56:35Z",
+      "side": 1,
+      "message": "Also mandatory [It\u0027s over 9000!](https://en.wikipedia.org/wiki/It%27s_Over_9000!)",
+      "revId": "dc2235e684275f419ad09d41bb1b3c132e7fe89d",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
