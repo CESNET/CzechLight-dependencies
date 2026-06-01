@@ -16,6 +16,24 @@
       "message": "recheck\n\n- TSAN failue in netopeer2 doesn\u0027t really have any details\n- the cla-sysrepo startup failure looks relevant",
       "revId": "184ad14ad6dc5be8b8c0c0c10dd9c8da3249c2f4",
       "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3d6a40d_988099b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-06-01T20:24:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a7b70b6a_4e3e9703",
+      "revId": "184ad14ad6dc5be8b8c0c0c10dd9c8da3249c2f4",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
     }
   ]
 }
