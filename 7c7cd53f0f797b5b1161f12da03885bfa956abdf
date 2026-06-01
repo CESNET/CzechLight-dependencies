@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "702b7f32_573c72ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-06-01T20:24:21Z",
+      "side": 1,
+      "message": "Yummy:\n\n- a [flaky test in libyang](https://github.com/CESNET/libyang/issues/2526) (not seen here in the CI)\n- a [bug in float/decimal64 comparison in libyang](https://github.com/CESNET/libyang/issues/2527) bites cla-sysrepo\n- an [UB](https://github.com/CESNET/libnetconf2/issues/609) and a [data race](https://github.com/CESNET/libnetconf2/issues/610) in libnetconf2",
+      "revId": "7c7cd53f0f797b5b1161f12da03885bfa956abdf",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
