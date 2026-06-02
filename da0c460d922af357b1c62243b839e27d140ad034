@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cdbbbea_dcd09a77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2026-06-02T09:12:55Z",
+      "side": 1,
+      "message": "recheck I suspect a timing-related race in the \"privcand\" test of netopeer2",
+      "revId": "da0c460d922af357b1c62243b839e27d140ad034",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
