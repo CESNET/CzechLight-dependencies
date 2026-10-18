@@ -18,7 +18,8 @@
       - CzechLight/libyang-cpp
       - github/sysrepo/sysrepo
       - CzechLight/sysrepo-cpp
-      - github/CESNET/libnetconf2
+      - name: github/CESNET/libnetconf2
+        override-checkout: cesnet/2026-10-18
       - CzechLight/libnetconf2-cpp
       - github/CESNET/netopeer2
       - github/doctest/doctest
