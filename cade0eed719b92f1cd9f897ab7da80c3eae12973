@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75d8e94f_1e20c9f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000070
+      },
+      "writtenOn": "2026-10-19T07:52:23Z",
+      "side": 1,
+      "message": "I think this is missing the reasoning behind why we set override-checkout, i.e. links to:\n\nhttps://github.com/CESNET/libnetconf2/pull/650\nhttps://github.com/CESNET/libnetconf2/pull/651",
+      "revId": "cade0eed719b92f1cd9f897ab7da80c3eae12973",
+      "serverId": "e32f8df8-3db0-4f76-a6c6-fe9d6e69dd68"
+    }
+  ]
+}
