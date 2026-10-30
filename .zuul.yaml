@@ -19,6 +19,7 @@
       - github/sysrepo/sysrepo
       - CzechLight/sysrepo-cpp
       - github/CESNET/libnetconf2
+        override-checkout: cesnet/2026-10-30-pr-650
       - CzechLight/libnetconf2-cpp
       - github/CESNET/netopeer2
       - github/doctest/doctest
